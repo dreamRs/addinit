@@ -1,0 +1,4 @@
+Name: Init Project
+Description: Initialisation d'un projet.
+Binding: initProject
+Interactive: true

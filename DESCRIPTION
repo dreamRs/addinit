@@ -1,0 +1,13 @@
+Package: addinit
+Type: Package
+Title: Init project
+Version: 0.1.0
+Authors@R: c(person("Fanny", "Meyer", , "fanny.meyer@dreamrs.fr", c("aut", "cre")),
+  person("Victor", "Perrier", , "victor.perrier@dreamrs.fr", c("aut")))
+Description: An addin to initialize your project with a specified structure
+License: GPL-3
+LazyData: TRUE
+Imports: miniUI,
+    rstudioapi,
+    shinyWidgets
+RoxygenNote: 6.0.1
