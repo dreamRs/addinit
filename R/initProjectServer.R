@@ -33,8 +33,21 @@ initProjectServer <- function(input, output, session) {
   
   
   observeEvent(input$config_create, {
-    create_config(author = input$author, packages = input$packages, config = input$config, funs = input$source_funs, path = input$config_path)
-    shiny::showNotification(ui = "Config script created !", type = "message")
+    
+    tryAlert(
+      expr = create_config(
+        author = input$author, 
+        packages = input$packages,
+        config = input$config, 
+        funs = input$source_funs,
+        path = input$config_path
+      ), 
+      success_text = "Script successfully created !",
+      error_text = "Ooops... Something went wrong"
+    )
+    
+    # create_config(author = input$author, packages = input$packages, config = input$config, funs = input$source_funs, path = input$config_path)
+    # shiny::showNotification(ui = "Config script created !", type = "message")
   })
   
   observeEvent(input$script_create, {

@@ -86,7 +86,11 @@ create_config <- function(author = "", packages = "", config = FALSE, funs = FAL
   # config_template <- readLines(con = 'inst/www/templates/config.R')
   config_template <- paste(config_template, collapse = "\n")
   
+  
   # Packages
+  if (is.null(packages))
+    packages <- ""
+  
   if (packages[1] != "") {
     packages <- paste("library(", packages, ")")
     packages <- paste(packages, collapse = "\n")
