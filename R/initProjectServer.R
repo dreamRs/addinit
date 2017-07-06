@@ -23,12 +23,12 @@ initProjectServer <- function(input, output, session) {
   
   
   observeEvent(update_folders_project$x, {
-    shinyWidgets::updateAwesomeRadio(session = session, inputId = "config_path",
+    shinyWidgets::updatePickerInput(session = session, inputId = "config_path",
                                      choices = c(".", list_dirs(recursive = FALSE)), 
-                                     selected = ".", inline = TRUE, status = "warning")
-    shinyWidgets::updateAwesomeRadio(session = session, inputId = "path_other",
+                                     selected = ".")
+    shinyWidgets::updatePickerInput(session = session, inputId = "path_other",
                                      choices = c(".", list_dirs(recursive = FALSE)), 
-                                     selected = ".", inline = TRUE, status = "warning")
+                                     selected = ".")
   })
   
   

@@ -65,10 +65,10 @@ initProjectUI <- function(params) {
                 column(6, shinyWidgets::materialSwitch(inputId = "source_funs", label = "Source function", value = params$source_funs, status = "warning", right = TRUE))
               ),
               shinyWidgets::pickerInput(
-                inputId = "packages", label = "Packages to load :", choices = params$packages$default, multiple = TRUE, 
+                inputId = "packages", label = "Packages to load :", choices = params$project$packages$default, multiple = TRUE, 
                 options = list(`live-search` = TRUE, size = 10, `selected-text-format` = "count > 3", 
                                `count-selected-text` = "{0} packages", `dropup-auto` = TRUE),
-                selected = params$packages$selected
+                selected = params$project$packages$selected
               )
             ),
             column(
