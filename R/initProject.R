@@ -27,7 +27,10 @@ initProject <- function() {
     shiny = list(
       folders = list(
         default = c("datas", "funs", "modules", "www")
-      )
+      ),
+      ui = TRUE,
+      server = TRUE,
+      global = TRUE
     )
   )
   

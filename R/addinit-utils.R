@@ -164,9 +164,91 @@ create_config <- function(author = "", packages = "", config = FALSE, funs = FAL
   invisible()
 }
 
+#' Create shiny script to initialize shiny app
+#'
+#' @param author Script's author
+#' @param packages Packages to load
+#' @param ui Create ui.R
+#' @param server Create server.R
+#' @param global Create global.R
+#'
+#' @noRd
+#'
 
+create_shiny_script <- function(author = "", packages = "", ui = TRUE, server = TRUE, global = TRUE) {
+  
+  # Packages
+  if (is.null(packages))
+    packages <- ""
+  
+  # Global.R
+  if (global == TRUE | packages[1] != "") {
+    global_template <- readLines(con = system.file('www/templates/global.R', package='addinit'))
+    # config_template <- readLines(con = 'inst/www/templates/config.R')
+    global_template <- paste(global_template, collapse = "\n")
+    
+    
+    if (packages[1] != "") {
+      packages <- paste("library(", packages, ")")
+      packages <- paste(packages, collapse = "\n")
+      packages <- paste(
+        "# Packages ----------------------------------------------------------------", "",
+        packages, sep = "\n"
+      )
+    }
+    
+    # Content
+    content <- whisker::whisker.render(
+      template = global_template, 
+      data = list(author = author, date = format(Sys.Date(), format = "%A %d %B %Y"), packages = packages)
+    )
+    fileCon <- file(file.path("global.R"))
+    writeLines(text = content, con = fileCon)
+    close(fileCon)
+    rstudioapi::navigateToFile(file = file.path("global.R"))
+    invisible()
+  }
 
+  # ui.R
+  if (ui == TRUE) {
+    ui_template <- readLines(con = system.file('www/templates/ui.R', package='addinit'))
+    # config_template <- readLines(con = 'inst/www/templates/config.R')
+    ui_template <- paste(ui_template, collapse = "\n")
+    
+    
+    # Content
+    content <- whisker::whisker.render(
+      template = ui_template, 
+      data = list(author = author, date = format(Sys.Date(), format = "%A %d %B %Y"))
+    )
+    fileCon <- file(file.path("ui.R"))
+    writeLines(text = content, con = fileCon)
+    close(fileCon)
+    rstudioapi::navigateToFile(file = file.path("ui.R"))
+    invisible()
+  }
+  
+  # ui.R
+  if (server == TRUE) {
+    server_template <- readLines(con = system.file('www/templates/server.R', package='addinit'))
+    # config_template <- readLines(con = 'inst/www/templates/config.R')
+    server_template <- paste(server_template, collapse = "\n")
+    
+    
+    # Content
+    content <- whisker::whisker.render(
+      template = server_template, 
+      data = list(author = author, date = format(Sys.Date(), format = "%A %d %B %Y"))
+    )
+    fileCon <- file(file.path("server.R"))
+    writeLines(text = content, con = fileCon)
+    close(fileCon)
+    rstudioapi::navigateToFile(file = file.path("server.R"))
+    invisible()
+  }
+  
 
+}
 
 
 #' Create a script with header

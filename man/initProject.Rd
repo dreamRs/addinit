@@ -6,6 +6,14 @@
 \usage{
 initProject()
 }
+\value{
+the return of \code{\link[shiny]{runGadget}}
+}
 \description{
 Initialize a structure for a new project
+}
+\examples{
+\dontrun{
+initProject()
+}
 }

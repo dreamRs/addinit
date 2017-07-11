@@ -9,5 +9,6 @@ License: GPL-3
 LazyData: TRUE
 Imports: miniUI,
     rstudioapi,
-    shinyWidgets
+    shinyWidgets,
+    shiny
 RoxygenNote: 6.0.1
