@@ -4,6 +4,8 @@
 #'
 #' @return the return of \code{\link[shiny]{runGadget}}
 #' @export
+#' 
+#' @importFrom utils installed.packages
 #'
 #' @examples 
 #' \dontrun{

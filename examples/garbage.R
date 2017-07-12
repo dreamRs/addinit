@@ -7,7 +7,8 @@ roxygenise(clean = TRUE)
 devtools::use_package("miniUI")
 devtools::use_package("rstudioapi")
 devtools::use_package("shinyWidgets")
-devtools::use_package("shiny")
+devtools::use_package("whisker")
+
 
 library("devtools")
 install(dependencies = FALSE)

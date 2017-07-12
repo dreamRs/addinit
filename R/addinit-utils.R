@@ -26,7 +26,9 @@ create_dirs <- function(paths) {
 #'
 #' @return a logical
 #' @noRd
-#'
+#' 
+#' @importFrom htmltools tags HTML
+#' 
 
 create_dirs_msg <- function(dirs, status) {
   status_icone <- ifelse(
@@ -79,6 +81,9 @@ list_dirs <- function(path = ".", recursive = TRUE) {
 #' @param path where to create the script
 #'
 #' @noRd
+#' 
+#' @importFrom whisker whisker.render
+#' @importFrom rstudioapi navigateToFile
 #'
 
 create_config <- function(author = "", packages = "", config = FALSE, funs = FALSE, path = ".") {
@@ -174,6 +179,8 @@ create_config <- function(author = "", packages = "", config = FALSE, funs = FAL
 #'
 #' @noRd
 #'
+#' @importFrom whisker whisker.render
+#' @importFrom rstudioapi navigateToFile
 
 create_shiny_script <- function(author = "", packages = "", ui = TRUE, server = TRUE, global = TRUE) {
   
@@ -183,7 +190,7 @@ create_shiny_script <- function(author = "", packages = "", ui = TRUE, server = 
   
   # Global.R
   if (global == TRUE | packages[1] != "") {
-    global_template <- readLines(con = system.file('www/templates/global.R', package='addinit'))
+    global_template <- readLines(con = system.file('www/templates/shiny/global.R', package='addinit'))
     # config_template <- readLines(con = 'inst/www/templates/config.R')
     global_template <- paste(global_template, collapse = "\n")
     
@@ -211,7 +218,7 @@ create_shiny_script <- function(author = "", packages = "", ui = TRUE, server = 
 
   # ui.R
   if (ui == TRUE) {
-    ui_template <- readLines(con = system.file('www/templates/ui.R', package='addinit'))
+    ui_template <- readLines(con = system.file('www/templates/shiny/ui.R', package='addinit'))
     # config_template <- readLines(con = 'inst/www/templates/config.R')
     ui_template <- paste(ui_template, collapse = "\n")
     
@@ -230,7 +237,7 @@ create_shiny_script <- function(author = "", packages = "", ui = TRUE, server = 
   
   # ui.R
   if (server == TRUE) {
-    server_template <- readLines(con = system.file('www/templates/server.R', package='addinit'))
+    server_template <- readLines(con = system.file('www/templates/shiny/server.R', package='addinit'))
     # config_template <- readLines(con = 'inst/www/templates/config.R')
     server_template <- paste(server_template, collapse = "\n")
     
@@ -260,6 +267,8 @@ create_shiny_script <- function(author = "", packages = "", ui = TRUE, server = 
 #'
 #' @noRd
 #'
+#' @importFrom whisker whisker.render
+#' @importFrom rstudioapi navigateToFile
 
 create_script <- function(path = ".", name = "script", author = "", title = "") {
   script_template <- readLines(con = system.file('www/templates/script.R', package='addinit'))

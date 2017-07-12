@@ -76,7 +76,7 @@ createFoldersUi <- function(id, params, title = "Create folders") {
         tags$div(
           class = "pull-right",
           br(),
-          actionButton(
+          shiny::actionButton(
             inputId = ns("folders_create"), label = "Create folders !", 
             icon = icon("folder-o"), class = "btn-primary"
           )

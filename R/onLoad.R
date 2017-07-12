@@ -6,5 +6,5 @@
 #'
 
 .onLoad <- function(...) {
-  addResourcePath('addinit', system.file('www', package='addinit'))
+  shiny::addResourcePath('addinit', system.file('www', package='addinit'))
 }

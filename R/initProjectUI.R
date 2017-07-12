@@ -1,6 +1,8 @@
 #' Ui for initProject Addin
 #'
 #' @noRd
+#' 
+#' @import shiny miniUI
 #'
 initProjectUI <- function(params) {
   
@@ -24,15 +26,15 @@ initProjectUI <- function(params) {
     
     
     # tabs
-    miniTabstripPanel(
+    miniUI::miniTabstripPanel(
       id = "tabs",
       
       # tab organize project ----
-      miniTabPanel(
+      miniUI::miniTabPanel(
         title = "Organize your project",
         value = "project",
         icon = icon("folder"),
-        miniContentPanel(
+        miniUI::miniContentPanel(
           
           
           createFoldersUi(id = "project", params = params$project, title = "Create folders")
@@ -157,11 +159,11 @@ initProjectUI <- function(params) {
       ),
       
       # tab organize shiny app ----
-      miniTabPanel(
+      miniUI::miniTabPanel(
         title = "Organize your Shiny app",
         value = "application",
         icon = icon("cubes"),
-        miniContentPanel(
+        miniUI::miniContentPanel(
           
           
           createFoldersUi(id = "application", params = params$shiny, title = "Create folders")

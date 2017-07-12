@@ -1,8 +1,8 @@
 #' Server for initProject Addin
 #'
-#' @param input 
-#' @param output 
-#' @param server 
+#' @param input   standard \code{shiny} input
+#' @param output  standard \code{shiny} output
+#' @param session standard \code{shiny} session
 #'
 #' @noRd
 #'
@@ -59,6 +59,9 @@ initProjectServer <- function(input, output, session) {
     )
     
   })
+  
+  
+  
   
   # App ----
   
