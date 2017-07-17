@@ -215,7 +215,7 @@ initProjectUI <- function(params) {
                   label = "", choices = c("Shiny" = "shiny",
                                           "Shiny Dashboard" = "dashboard", 
                                           "Single file app" = "miniapp"),
-                  selected = "Shiny Dashboard", 
+                  selected = "dashboard", 
                   inline = TRUE, checkbox = TRUE
                 )
               )
