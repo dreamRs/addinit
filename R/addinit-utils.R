@@ -308,6 +308,32 @@ create_script <- function(path = ".", name = "script", author = "", title = "", 
 
 
 
+#' Render a script frfom a template
+#'
+#' @param template Path to the template
+#' @param path Path to the new script generated
+#' @param name name of the script
+#' @param ... additionnal arguments to the template
+#'
+#' @noRd
+render_script <- function(template, path = ".", name = "script", ...) {
+  script_template <- readLines(con = template)
+  script_template <- paste(script_template, collapse = "\n")
+  content <- whisker::whisker.render(
+    template = script_template, 
+    data = list(...)
+  )
+  name <- paste0(name, ".R")
+  fileCon <- file(file.path(path, name))
+  writeLines(text = content, con = fileCon)
+  close(fileCon)
+  rstudioapi::navigateToFile(file = file.path(path, name))
+  invisible()
+}
+
+
+
+
 
 #' Generate script to load packages
 #'
@@ -338,6 +364,117 @@ load_packages <- function(packages) {
   
   return(packages)
 }
+
+
+
+
+
+
+#' Initialize a cript from a template
+#'
+#' @param type Tpe of script : script, shiny, dashboard, miniapp.
+#' @param ... additionnal arguments to put in the template
+#'
+#' @noRd
+init_script <- function(type, ...) {
+  args <- list(...)
+  args_default <- list(
+    path = ".", 
+    name = "script", 
+    author = "",
+    title = "",
+    packages = ""
+  )
+  args <- modifyList(x = args_default, val = args)
+  type <- match.arg(
+    arg = type, 
+    choices = c("shiny", "dashboard", "miniapp", "script")
+  )
+  if (type == "script") {
+    render_script(
+      template = system.file('www/templates/script.R', package='addinit'),
+      path = args$path,
+      name = args$name, 
+      author = args$author,
+      title = args$title, 
+      date = format(Sys.Date(), format = "%A %d %B %Y"),
+      packages = load_packages(args$packages)
+    )
+  } else if (type == "shiny") {
+    render_script(
+      template = system.file('www/templates/shiny/ui.R', package='addinit'),
+      path = ".",
+      name = "ui", 
+      author = args$author,
+      title = args$title, 
+      date = format(Sys.Date(), format = "%A %d %B %Y"),
+      packages = load_packages(args$packages)
+    )
+    render_script(
+      template = system.file('www/templates/shiny/server.R', package='addinit'),
+      path = ".",
+      name = "server", 
+      author = args$author,
+      title = args$title, 
+      date = format(Sys.Date(), format = "%A %d %B %Y"),
+      packages = load_packages(args$packages)
+    )
+    render_script(
+      template = system.file('www/templates/shiny/global.R', package='addinit'),
+      path = ".",
+      name = "global", 
+      author = args$author,
+      title = args$title, 
+      date = format(Sys.Date(), format = "%A %d %B %Y"),
+      packages = load_packages(args$packages)
+    )
+  } else if (type == "dashboard") {
+    render_script(
+      template = system.file('www/templates/dashboard/ui.R', package='addinit'),
+      path = ".",
+      name = "ui", 
+      author = args$author,
+      title = args$title, 
+      date = format(Sys.Date(), format = "%A %d %B %Y"),
+      packages = load_packages(args$packages)
+    )
+    render_script(
+      template = system.file('www/templates/dashboard/server.R', package='addinit'),
+      path = ".",
+      name = "server", 
+      author = args$author,
+      title = args$title, 
+      date = format(Sys.Date(), format = "%A %d %B %Y"),
+      packages = load_packages(args$packages)
+    )
+    render_script(
+      template = system.file('www/templates/dashboard/global.R', package='addinit'),
+      path = ".",
+      name = "global", 
+      author = args$author,
+      title = args$title, 
+      date = format(Sys.Date(), format = "%A %d %B %Y"),
+      packages = load_packages(args$packages)
+    )
+  } else if (type == "miniapp") {
+    render_script(
+      template = system.file('www/templates/app/app.R', package='addinit'),
+      path = ".",
+      name = args$name, 
+      author = args$author,
+      title = args$title, 
+      date = format(Sys.Date(), format = "%A %d %B %Y"),
+      packages = load_packages(args$packages)
+    )
+  }
+  invisible()
+}
+
+
+
+
+
+
 
 
 

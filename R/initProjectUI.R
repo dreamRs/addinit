@@ -212,7 +212,9 @@ initProjectUI <- function(params) {
                 condition = "input.basic_shiny_script == true",
                 shinyWidgets::awesomeRadio(
                   inputId = "type_shiny_app", 
-                  label = "", choices = c("Shiny", "Shiny Dashboard", "Mini App"),
+                  label = "", choices = c("Shiny" = "shiny",
+                                          "Shiny Dashboard" = "dashboard", 
+                                          "Single file app" = "miniapp"),
                   selected = "Shiny Dashboard", 
                   inline = TRUE, checkbox = TRUE
                 )

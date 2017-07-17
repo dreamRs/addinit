@@ -68,6 +68,7 @@ initProjectServer <- function(input, output, session) {
   
   update_folders_shiny <- callModule(module = createFoldersServer, id = "application")
   
+  
   observeEvent(input$basic_shiny_script == TRUE, {
     toggleInputServer(session = session, inputId = "script_title_shiny", enable = !input$basic_shiny_script)
     toggleInputServer(session = session, inputId = "path_shiny", enable = !input$basic_shiny_script)
@@ -75,16 +76,19 @@ initProjectServer <- function(input, output, session) {
   })
   
   observeEvent(update_folders_shiny$x, {
-    shinyWidgets::updatePickerInput(session = session, inputId = "path_shiny",
-                                    choices = c(".", list_dirs(recursive = FALSE)),
-                                    selected = ".")
+    shinyWidgets::updatePickerInput(
+      session = session, 
+      inputId = "path_shiny",
+      choices = c(".", list_dirs(recursive = FALSE)),
+      selected = "."
+    )
   })
   
   observeEvent(input$script_create_shiny, {
     
     if (input$basic_shiny_script){
       tryAlert(
-        expr = create_shiny_script(
+        expr = init_script(
           type = input$type_shiny_app,
           author = input$author_shiny, 
           packages = input$packages_shiny
