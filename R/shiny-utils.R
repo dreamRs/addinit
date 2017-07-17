@@ -2,13 +2,10 @@
 # Utils Shiny ----
 
 
-#' Tggle Input UI
+#' Toggle Input UI
 #'
-#'
-#' @return a character
+#' @return a script tag.
 #' @noRd
-#'
-
 toggleInputUi <- function() {
   
   tags$script(
@@ -27,16 +24,12 @@ toggleInputUi <- function() {
 
 #'  Toggle Input Server
 #'
-#' @param session shiny session
-#' @param inputId shiny input id
-#' @enable enable
-#' @picker picker 
+#' @param session shiny session.
+#' @param inputId shiny input id.
+#' @param enable enable enable or disable the input.
+#' @param picker Is the input a \code{pickerInput}.
 #'
-#' @return a logical
 #' @noRd
-#'
-#'
-
 toggleInputServer <- function(session, inputId, enable = TRUE, picker = FALSE) {
   session$sendCustomMessage(
     type = 'toggleInput',

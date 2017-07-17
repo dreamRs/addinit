@@ -3,6 +3,7 @@
 #' @noRd
 #' 
 #' @import shiny miniUI
+#' @importFrom shinyWidgets pickerInput awesomeCheckbox materialSwitch awesomeRadio
 #'
 initProjectUI <- function(params) {
   
@@ -86,7 +87,8 @@ initProjectUI <- function(params) {
                 tags$label("By :"),
                 tags$input(
                   class = "form-control shiny-bound-input",
-                  type = "text", id = "author", value = params$author,
+                  type = "text", id = "author",
+                  value = params$author,
                   placeholder = "Fanny Meyer"
                 )
               )
@@ -107,9 +109,15 @@ initProjectUI <- function(params) {
             column(
               width = 6,
               shinyWidgets::pickerInput(
-                inputId = "packages", label = "Packages to load :", choices = params$project$packages$default, multiple = TRUE, 
-                options = list(`live-search` = TRUE, size = 10, `selected-text-format` = "count > 3", 
-                               `count-selected-text` = "{0} packages", `dropup-auto` = TRUE),
+                inputId = "packages", 
+                label = "Packages to load :",
+                choices = params$project$packages$default,
+                multiple = TRUE, 
+                options = list(`live-search` = TRUE, 
+                               size = 10, 
+                               `selected-text-format` = "count > 3", 
+                               `count-selected-text` = "{0} packages", 
+                               `dropup-auto` = TRUE),
                 selected = params$project$packages$selected
               )
             )
@@ -117,16 +125,37 @@ initProjectUI <- function(params) {
           fluidRow(
             column(
               width = 6,
-              shinyWidgets::awesomeCheckbox(inputId = "config_script", 
-                                            label = "Config Script", 
-                                            value = FALSE, status = "info")
+              shinyWidgets::awesomeCheckbox(
+                inputId = "config_script", 
+                label = "Config Script", 
+                value = FALSE,
+                status = "info"
+              )
             ),
             column(
               width = 6,
               conditionalPanel(
                 condition = "input.config_script == true",
-                column(6, shinyWidgets::materialSwitch(inputId = "config", label = "Add config list", value = params$project$config, status = "warning", right = TRUE)),
-                column(6, shinyWidgets::materialSwitch(inputId = "source_funs", label = "Source function", value = params$project$source_funs, status = "warning", right = TRUE))
+                column(
+                  width = 6, 
+                  shinyWidgets::materialSwitch(
+                    inputId = "config", 
+                    label = "Add config list",
+                    value = params$project$config,
+                    status = "warning", 
+                    right = TRUE
+                  )
+                ),
+                column(
+                  width = 6,
+                  shinyWidgets::materialSwitch(
+                    inputId = "source_funs", 
+                    label = "Source function",
+                    value = params$project$source_funs,
+                    status = "warning", 
+                    right = TRUE
+                  )
+                )
               )
             )
           ),
@@ -136,7 +165,12 @@ initProjectUI <- function(params) {
               br(),
               tags$div(
                 style = "float:right",
-                actionButton(inputId = "script_create", label = "Add script", icon = icon("file-code-o"), class = "btn-primary")
+                actionButton(
+                  inputId = "script_create",
+                  label = "Add script", 
+                  icon = icon("file-code-o"),
+                  class = "btn-primary"
+                )
               )
             )
           )
@@ -166,17 +200,22 @@ initProjectUI <- function(params) {
           fluidRow(
             column(
               width = 6,
-              shinyWidgets::awesomeCheckbox(inputId = "basic_shiny_script", 
-                                            label = "Add Shiny script", 
-                                            value = FALSE, status = "info")
+              shinyWidgets::awesomeCheckbox(
+                inputId = "basic_shiny_script", 
+                label = "Add Shiny script", 
+                value = FALSE, status = "info"
+              )
             ),
             column(
               width = 6,
               conditionalPanel(
                 condition = "input.basic_shiny_script == true",
-                awesomeRadio(inputId = "type_shiny_app", 
-                             label = "", choices = c("Shiny", "Shiny Dashboard", "Mini App"), selected = "Shiny Dashboard", 
-                             inline = TRUE, checkbox = TRUE)
+                shinyWidgets::awesomeRadio(
+                  inputId = "type_shiny_app", 
+                  label = "", choices = c("Shiny", "Shiny Dashboard", "Mini App"),
+                  selected = "Shiny Dashboard", 
+                  inline = TRUE, checkbox = TRUE
+                )
               )
             )
           ),
@@ -185,7 +224,8 @@ initProjectUI <- function(params) {
               width = 6,
               shinyWidgets::pickerInput(
                 inputId = "path_shiny", label = "Where :", 
-                choices = c(". (root)" = ".", list_dirs(recursive = FALSE)), selected = ".",
+                choices = c(". (root)" = ".", list_dirs(recursive = FALSE)),
+                selected = ".",
                 options = list(size = 5)
               )
             ),
@@ -216,7 +256,8 @@ initProjectUI <- function(params) {
                 tags$label("By :"),
                 tags$input(
                   class = "form-control shiny-bound-input",
-                  type = "text", id = "author_shiny", value = params$author,
+                  type = "text", id = "author_shiny", 
+                  value = params$author,
                   placeholder = "Fanny Meyer"
                 )
               )
@@ -237,9 +278,13 @@ initProjectUI <- function(params) {
             column(
               width = 6,
               shinyWidgets::pickerInput(
-                inputId = "packages_shiny", label = "Packages to load :", choices = params$project$packages$default, multiple = TRUE, 
-                options = list(`live-search` = TRUE, size = 10, `selected-text-format` = "count > 3", 
-                               `count-selected-text` = "{0} packages", `dropup-auto` = TRUE),
+                inputId = "packages_shiny", 
+                label = "Packages to load :",
+                choices = params$project$packages$default, multiple = TRUE, 
+                options = list(`live-search` = TRUE, size = 10, 
+                               `selected-text-format` = "count > 3", 
+                               `count-selected-text` = "{0} packages", 
+                               `dropup-auto` = TRUE),
                 selected = params$project$packages$selected
               )
             )
@@ -250,7 +295,12 @@ initProjectUI <- function(params) {
               br(),
               tags$div(
                 style = "float:right",
-                actionButton(inputId = "script_create_shiny", label = "Add script", icon = icon("file-code-o"), class = "btn-primary")
+                actionButton(
+                  inputId = "script_create_shiny", 
+                  label = "Add script",
+                  icon = icon("file-code-o"), 
+                  class = "btn-primary"
+                )
               )
             )
           )

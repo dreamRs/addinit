@@ -2,6 +2,11 @@
 # Utils ----
 
 
+`%||%` <- function(a, b) {
+  if (!is.null(a)) a else b
+}
+
+
 #' Create directories
 #'
 #' @param paths Valid path(s) 
@@ -160,7 +165,13 @@ create_config <- function(author = "", packages = "", config = FALSE, funs = FAL
   # Content
   content <- whisker::whisker.render(
     template = config_template, 
-    data = list(author = author, date = format(Sys.Date(), format = "%A %d %B %Y"), packages = packages, config = config, funs = funs)
+    data = list(
+      author = author, 
+      date = format(Sys.Date(), format = "%A %d %B %Y"),
+      packages = packages,
+      config = config, 
+      funs = funs
+    )
   )
   fileCon <- file(file.path(path, "config.R"))
   writeLines(text = content, con = fileCon)
@@ -207,7 +218,11 @@ create_shiny_script <- function(author = "", packages = "", ui = TRUE, server = 
     # Content
     content <- whisker::whisker.render(
       template = global_template, 
-      data = list(author = author, date = format(Sys.Date(), format = "%A %d %B %Y"), packages = packages)
+      data = list(
+        author = author, 
+        date = format(Sys.Date(), format = "%A %d %B %Y"),
+        packages = packages
+      )
     )
     fileCon <- file(file.path("global.R"))
     writeLines(text = content, con = fileCon)
@@ -260,22 +275,28 @@ create_shiny_script <- function(author = "", packages = "", ui = TRUE, server = 
 
 #' Create a script with header
 #'
-#' @param path Where to create the file
-#' @param name Script's name
-#' @param author Author of the script
-#' @param title 
+#' @param path Where to create the file.
+#' @param name Script's name.
+#' @param author Author of the script.
+#' @param title Title of the script.
+#' @param packages Package to load in the script.
 #'
 #' @noRd
 #'
 #' @importFrom whisker whisker.render
 #' @importFrom rstudioapi navigateToFile
 
-create_script <- function(path = ".", name = "script", author = "", title = "") {
+create_script <- function(path = ".", name = "script", author = "", title = "", packages = "") {
   script_template <- readLines(con = system.file('www/templates/script.R', package='addinit'))
   script_template <- paste(script_template, collapse = "\n")
   content <- whisker::whisker.render(
     template = script_template, 
-    data = list(author = author, date = format(Sys.Date(), format = "%A %d %B %Y"), title = title)
+    data = list(
+      author = author %||% "",
+      date = format(Sys.Date(), format = "%A %d %B %Y"),
+      title = title %||% "",
+      packages = load_packages(packages)
+    )
   )
   name <- paste0(name, ".R")
   fileCon <- file(file.path(path, name))
@@ -284,5 +305,39 @@ create_script <- function(path = ".", name = "script", author = "", title = "") 
   rstudioapi::navigateToFile(file = file.path(path, name))
   invisible()
 }
+
+
+
+
+#' Generate script to load packages
+#'
+#' @param packages a character vector of packages to load
+#'
+#' @return a string
+#' @noRd
+#'
+#' @examples
+#' \dontrun{
+#' load_packages(NULL)
+#' load_packages("")
+#' load_packages("data.table")
+#' }
+load_packages <- function(packages) {
+  if (is.null(packages))
+    packages <- ""
+  
+  if (packages[1] != "") {
+    packages <- paste("library(", packages, ")")
+    packages <- paste(packages, collapse = "\n")
+    packages <- paste(
+      "# Packages ----------------------------------------------------------------",
+      "",
+      packages, sep = "\n"
+    )
+  }
+  
+  return(packages)
+}
+
 
 

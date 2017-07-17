@@ -99,7 +99,7 @@ initProjectServer <- function(input, output, session) {
                       name = input$script_name_shiny, 
                       author = input$author_shiny, 
                       title = input$script_title_shiny,
-                      package = input$packages_shiny), 
+                      packages = input$packages_shiny), 
         success_text = "Script successfully created !",
         error_text = "Ooops... Something went wrong"
       )
