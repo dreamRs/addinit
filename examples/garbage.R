@@ -15,7 +15,7 @@ install(dependencies = FALSE)
 
 
 library(addinit)
-initAddin() # old
+#initAddin() # old
 
 initProject() # new
 
