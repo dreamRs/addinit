@@ -36,7 +36,7 @@ initProject <- function() {
     )
   )
   
-  params <- getOption(x = "addinit", default = params_default)
+  params <- modifyList(x = params_default, val = getOption(x = "addinit", default = list()))
   
   # Addin ---
   viewer <- dialogViewer("Initialize a project.", width = 1000, height = 700)

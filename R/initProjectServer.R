@@ -49,7 +49,7 @@ initProjectServer <- function(input, output, session) {
       )
     } else {
       tryAlert(
-        create_script(path = input$path_other, 
+        create_script(path = input$path, 
                       name = input$script_name, 
                       author = input$author, 
                       title = input$script_title,
