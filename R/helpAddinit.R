@@ -3,6 +3,7 @@
 #' @return a taglist
 #' @noRd
 #' @importFrom htmltools includeMarkdown
+#' @importFrom markdown markdownToHTML
 helpAddinit <- function() {
   
   tagList(
