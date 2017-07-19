@@ -56,12 +56,12 @@ helpAddinit <- function() {
           "For this just modify the parameters list below and",
           "set the option addinit in your .Rprofile."
         ),
-        htmltools::includeMarkdown(path = system.file('www/params.md', package='addinit'))
+        tags$div(style = "max-height: 300px;overflow-y: scroll;",
+        htmltools::includeMarkdown(path = system.file('www/params.md', package='addinit')))
       )
       
     ),
-    tags$div(style = "max-height: 300px;overflow-y: scroll;",
-             tags$script(HTML("$('ul.nav-tabs').addClass('nav-justified');")))
+    tags$script(HTML("$('ul.nav-tabs').addClass('nav-justified');"))
   )
   
 }
