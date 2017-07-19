@@ -3,3 +3,4 @@
 test/
 examples/
 ^\.travis\.yml$
+^cran-comments\.md$
