@@ -34,7 +34,17 @@ helpAddinit <- function() {
             "https://github.com/dreamRs/addinit/issues",
             href = "https://github.com/dreamRs/addinit/issues"
           )
+        ),
+        br(),
+        br(),
+        tags$p(
+          "Keep Calm and use", tags$b("addinit") , "!",
+          tags$a(
+            tags$a(icon("paw"),
+            href = "https://fr.pinterest.com/pin/274156696044567832/"
+          )
         )
+      )
       ),
       
       tabPanel(
@@ -50,8 +60,8 @@ helpAddinit <- function() {
       )
       
     ),
-    
-    tags$script(HTML("$('ul.nav-tabs').addClass('nav-justified');"))
+    tags$div(style = "max-height: 300px;overflow-y: scroll;",
+             tags$script(HTML("$('ul.nav-tabs').addClass('nav-justified');")))
   )
   
 }

@@ -12,7 +12,9 @@ initProjectServer <- function(input, output, session) {
   # Help modal
   observeEvent(input$help, {
     shiny::showModal(shiny::modalDialog(
-      title = NULL, easyClose = TRUE, size = "m",
+      title = NULL, easyClose = TRUE, size = "m", footer = tags$p(
+        tags$a(tags$img(src = "addinit/logo.png", align = "left", style="width:13%"), href = "https://www.dreamrs.fr/"), 
+        modalButton("Cancel")),
       helpAddinit()
     ))
   })
