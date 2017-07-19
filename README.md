@@ -3,6 +3,9 @@
 
 > Addin for initializing new projects
 
+[![Travis-CI Build Status](https://travis-ci.org/dreamRs/addinit.svg?branch=master)](https://travis-ci.org/dreamRs/addinit)
+
+
 ## Overview
 
 This addin provide a Shiny gadget to easily create directories and scripts from templates
