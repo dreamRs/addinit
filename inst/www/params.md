@@ -26,5 +26,5 @@ my_custom_params <- list(
     template = "dashboard"
   )
 )
-options("addinit" = addinit_options)
+options("addinit" = my_custom_params)
 ```
