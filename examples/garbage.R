@@ -29,19 +29,20 @@ initProject() # new
 
 
 addinit_options <- list(
-  author = "Fan & Vic",
+  author = NULL,
   project = list(
     folders = list(
       default = c("scripts", "datas", "funs", "inputs", "outputs", "logs"),
-      selected = c("scripts", "datas")
+      selected = NULL
     ),
     packages = list(
       default = rownames(installed.packages()),
-      selected = "data.table"
+      selected = NULL
     ),
     config = TRUE,
     source_funs = FALSE
-  )
+  ),
+  app
 )
 
 

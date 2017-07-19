@@ -16,23 +16,28 @@ initProject <- function() {
   
   # Parameters
   params_default <- list(
+    author = NULL,
     project = list(
       folders = list(
         default = c("scripts", "datas", "funs", "inputs", "outputs", "logs")
       ),
       packages = list(
-        default = rownames(installed.packages())
+        default = rownames(installed.packages()),
+        selected = NULL
       ),
       config = TRUE,
       source_funs = FALSE
     ),
-    shiny = list(
+    application = list(
       folders = list(
         default = c("datas", "funs", "modules", "www")
       ),
-      ui = TRUE,
-      server = TRUE,
-      global = TRUE
+      packages = list(
+        default = rownames(installed.packages()),
+        selected = NULL
+      ),
+      create_template = TRUE,
+      template = "dashboard"
     )
   )
   

@@ -33,9 +33,12 @@ toggleInputUi <- function() {
 toggleInputServer <- function(session, inputId, enable = TRUE, picker = FALSE) {
   session$sendCustomMessage(
     type = 'toggleInput',
-    message = list(id = inputId, enable = enable, picker = picker)
+    message = list(id = escape_jquery(inputId), enable = enable, picker = picker)
   )
 }
 
 
 
+escape_jquery <- function(string) {
+  gsub(x = string, pattern = "(\\W)", replacement = "\\\\\\1")
+}
