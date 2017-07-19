@@ -5,6 +5,8 @@ Version: 0.1.2
 Authors@R: c(person("Fanny", "Meyer", , "fanny.meyer@dreamrs.fr", c("aut", "cre")),
   person("Victor", "Perrier", , "victor.perrier@dreamrs.fr", c("aut")))
 Description: A Shiny gadget to initialize your project with a specified structure.
+URL: https://github.com/dreamRs/addinit
+BugReports: https://github.com/dreamRs/addinit/issues
 License: GPL-3
 LazyData: TRUE
 Imports: miniUI,
