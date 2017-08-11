@@ -158,11 +158,11 @@ createScriptsAppServer <- function(input, output, session, trigger) {
   
   observeEvent(input$basic_shiny_script, {
     if (!is.null(input$basic_shiny_script)) {
-      toggleInputServer(
-        session = session, 
-        inputId = ns("script_title_shiny"), 
-        enable = !input$basic_shiny_script
-      )
+      # toggleInputServer(
+      #   session = session, 
+      #   inputId = ns("script_title_shiny"), 
+      #   enable = !input$basic_shiny_script
+      # )
       toggleInputServer(
         session = session,
         inputId = ns("path_shiny"),

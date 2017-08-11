@@ -460,7 +460,7 @@ init_script <- function(type, ...) {
     render_script(
       template = system.file('www/templates/app/app.R', package='addinit'),
       path = ".",
-      name = args$name, 
+      name = "app", 
       author = args$author,
       title = args$title, 
       date = format(Sys.Date(), format = "%A %d %B %Y"),
