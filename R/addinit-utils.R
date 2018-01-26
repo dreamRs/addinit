@@ -167,7 +167,7 @@ create_config <- function(author = "", packages = "", config = FALSE, funs = FAL
     template = config_template, 
     data = list(
       author = author, 
-      date = format(Sys.Date(), format = "%A %d %B %Y"),
+      date = enc2utf8(format(Sys.Date(), format = "%A %d %B %Y")),
       packages = packages,
       config = config, 
       funs = funs
@@ -241,7 +241,7 @@ create_shiny_script <- function(author = "", packages = "", ui = TRUE, server = 
     # Content
     content <- whisker::whisker.render(
       template = ui_template, 
-      data = list(author = author, date = format(Sys.Date(), format = "%A %d %B %Y"))
+      data = list(author = author, date = enc2utf8(format(Sys.Date(), format = "%A %d %B %Y")))
     )
     fileCon <- file(file.path("ui.R"))
     writeLines(text = content, con = fileCon)
@@ -260,7 +260,7 @@ create_shiny_script <- function(author = "", packages = "", ui = TRUE, server = 
     # Content
     content <- whisker::whisker.render(
       template = server_template, 
-      data = list(author = author, date = format(Sys.Date(), format = "%A %d %B %Y"))
+      data = list(author = author, date = enc2utf8(format(Sys.Date(), format = "%A %d %B %Y")))
     )
     fileCon <- file(file.path("server.R"))
     writeLines(text = content, con = fileCon)
@@ -293,7 +293,7 @@ create_script <- function(path = ".", name = "script", author = "", title = "", 
     template = script_template, 
     data = list(
       author = author %||% "",
-      date = format(Sys.Date(), format = "%A %d %B %Y"),
+      date = enc2utf8(format(Sys.Date(), format = "%A %d %B %Y")),
       title = title %||% "",
       packages = load_packages(packages)
     )
