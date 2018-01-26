@@ -1,0 +1,29 @@
+Binding: rst_create_study
+Title: addinit - create study project
+OpenFiles: README.md
+
+Parameter: description
+Widget: TextInput
+Label: Project's description
+Default: 
+Position: right
+
+Parameter: scripts
+Widget: CheckboxInput
+Label: add 'scripts' subfolder
+Default: On
+
+Parameter: datas
+Widget: CheckboxInput
+Label: add 'datas' subfolder
+Default: On
+
+Parameter: inputs
+Widget: CheckboxInput
+Label: add 'inputs' subfolder
+Default: On
+
+Parameter: funs
+Widget: CheckboxInput
+Label: add 'funs' subfolder
+Default: Off
