@@ -2,12 +2,13 @@
 #'
 #' @noRd
 #' 
-#' @import shiny miniUI
-#' @importFrom shinyWidgets pickerInput awesomeCheckbox materialSwitch awesomeRadio
+#' @importFrom miniUI miniPage miniTitleBarButton miniTabstripPanel miniTabPanel miniContentPanel
+#' @importFrom shiny icon
+#' @importFrom htmltools tags
 #'
 initProjectUI <- function(params) {
   
-  miniUI::miniPage(
+  miniPage(
     # CSS
     tags$link(rel="stylesheet", type="text/css", href="addinit/addinit.css"),
     
@@ -28,20 +29,20 @@ initProjectUI <- function(params) {
     toggleInputUi(),
     
     # tabs
-    miniUI::miniTabstripPanel(
+    miniTabstripPanel(
       id = "tabs",
       
       # tab organize project ----
-      miniUI::miniTabPanel(
+      miniTabPanel(
         title = "Organize your project",
         value = "project",
         icon = icon("folder"),
-        miniUI::miniContentPanel(
+        miniContentPanel(
           
           
           createFoldersUi(id = "project", params = params$project, title = "Create folders")
           
-          , br(),
+          , tags$br(),
           
           createScriptsProjectUI(
             id = "project-scripts", 
@@ -53,16 +54,16 @@ initProjectUI <- function(params) {
       ),
       
       # tab organize shiny app ----
-      miniUI::miniTabPanel(
+      miniTabPanel(
         title = "Organize your Shiny app",
         value = "application",
         icon = icon("cubes"),
-        miniUI::miniContentPanel(
+        miniContentPanel(
           
           
           createFoldersUi(id = "application", params = params$application, title = "Create folders")
           
-          , br(),
+          , tags$br(),
           
           createScriptsAppUI(
             id = "apps-scripts", 

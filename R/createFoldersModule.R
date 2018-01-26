@@ -35,6 +35,10 @@
 #'
 #' @return a \code{shiny::\link[shiny]{tagList}} containing UI elements
 #' @noRd
+#' 
+#' @importFrom shiny NS tagList fluidRow column tags textInput actionButton icon
+#' @importFrom shinyWidgets checkboxGroupButtons
+#' @importFrom htmltools tags
 #'
 createFoldersUi <- function(id, params, title = "Create folders") {
   
@@ -46,7 +50,7 @@ createFoldersUi <- function(id, params, title = "Create folders") {
       column(
         width = 12,
         tags$hr(class = "addInit-hr"),
-        h4(title, class = "addInit-h4"),
+        tags$h4(title, class = "addInit-h4"),
         tags$hr(class = "addInit-hr")
       )
     ),
@@ -54,7 +58,7 @@ createFoldersUi <- function(id, params, title = "Create folders") {
       column(
         width = 8,
         tags$h4("Folders :", class = "addInit-label"),
-        shinyWidgets::checkboxGroupButtons(
+        checkboxGroupButtons(
           inputId = ns("folders"), label = NULL, choices = params$folders$default, justified = TRUE, 
           status = "info", selected = params$folders$selected,
           checkIcon = list(yes = tags$i(class = "fa fa-check-square"), no = tags$i(class = "fa fa-square-o"))
@@ -75,8 +79,8 @@ createFoldersUi <- function(id, params, title = "Create folders") {
         width = 12,
         tags$div(
           class = "pull-right",
-          br(),
-          shiny::actionButton(
+          tags$br(),
+          actionButton(
             inputId = ns("folders_create"), label = "Create folders !", 
             icon = icon("folder-o"), class = "btn-primary"
           )
@@ -98,6 +102,10 @@ createFoldersUi <- function(id, params, title = "Create folders") {
 #'
 #' @return a reactiveValues updated each time folders are created
 #' @noRd
+#' 
+#' @importFrom htmltools tags
+#' @importFrom shiny reactiveValues observeEvent showModal modalDialog
+#' 
 createFoldersServer <- function(input, output, session) {
   
   # Namespace
@@ -108,7 +116,7 @@ createFoldersServer <- function(input, output, session) {
   observeEvent(input$folders_create, {
     folders <- c(input$folders, unlist(strsplit(input$folders_other, split = ";")))
     status_folders <- create_dirs(file.path(".", folders))
-    shiny::showModal(shiny::modalDialog(
+    showModal(modalDialog(
       title = "Folders creation",
       create_dirs_msg(
         folders,

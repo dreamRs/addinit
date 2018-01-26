@@ -48,7 +48,6 @@
 #' 
 #' # Then relaunch the addin
 #' }
-
 initProject <- function() {
   
   # Parameters

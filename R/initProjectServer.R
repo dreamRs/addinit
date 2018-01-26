@@ -5,21 +5,21 @@
 #' @param session standard \code{shiny} session
 #'
 #' @noRd
+#' 
+#' @importFrom shiny observeEvent showModal modalDialog callModule stopApp modalButton
+#' @importFrom htmltools tags
 #'
-
 initProjectServer <- function(input, output, session) {
   
   # Help modal
   observeEvent(input$help, {
-    shiny::showModal(shiny::modalDialog(
+    showModal(modalDialog(
       title = NULL, easyClose = TRUE, size = "m", footer = tags$p(
         tags$a(tags$img(src = "addinit/logo.png", align = "left", style="width:13%"), href = "https://www.dreamrs.fr/"), 
         modalButton("Cancel")),
       helpAddinit()
     ))
   })
-  
-  
   
   # Project ----
   
@@ -35,8 +35,6 @@ initProjectServer <- function(input, output, session) {
   )
   
   
-  
-  
   # App ----
   
   callModule(
@@ -50,9 +48,6 @@ initProjectServer <- function(input, output, session) {
     id = "apps-scripts", 
     trigger = update_folders_shiny
   )
-
-  
-
   
   # close app ----
   observeEvent(input$cancel, stopApp())

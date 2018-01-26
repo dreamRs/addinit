@@ -7,29 +7,30 @@
 #' @param author Who should be credited as the author of the scripts ?
 #'
 #' @noRd
-#' @importFrom shinyWidgets pickerInput awesomeCheckbox materialSwitch
+#' @importFrom shinyWidgets awesomeCheckbox awesomeRadio pickerInput
 #' @importFrom htmltools tags tagList
-#' @import shiny
+#' @importFrom shiny NS fluidRow column conditionalPanel actionButton icon
+#' 
 createScriptsAppUI <- function(id, params, author = NULL) {
   
   # Namespace
   ns <- NS(id)
   
-  htmltools::tagList(
+  tagList(
     fluidRow(
       column(
         width = 12,
         tags$hr(class = "addInit-hr"),
-        h4("Create scripts", class = "addInit-h4"),
+        tags$h4("Create scripts", class = "addInit-h4"),
         tags$hr(class = "addInit-hr")
       )
     ),
-    br(),
+    tags$br(),
     fluidRow(
       style = "min-height: 70px;",
       column(
         width = 6,
-        shinyWidgets::awesomeCheckbox(
+        awesomeCheckbox(
           inputId = ns("basic_shiny_script"), 
           label = "Add Shiny template", 
           value = params$create_template, status = "info"
@@ -39,7 +40,7 @@ createScriptsAppUI <- function(id, params, author = NULL) {
         width = 6,
         conditionalPanel(
           condition = paste0("input['", ns("basic_shiny_script"), "'] == true"),
-          shinyWidgets::awesomeRadio(
+          awesomeRadio(
             inputId = ns("type_shiny_app"), 
             label = "Choose a template :", 
             choices = c("Shiny" = "shiny",
@@ -54,7 +55,7 @@ createScriptsAppUI <- function(id, params, author = NULL) {
     fluidRow(
       column(
         width = 6,
-        shinyWidgets::pickerInput(
+        pickerInput(
           inputId = ns("path_shiny"), label = "Where :", 
           choices = c(". (root)" = ".", list_dirs(recursive = FALSE)),
           selected = ".",
@@ -109,7 +110,7 @@ createScriptsAppUI <- function(id, params, author = NULL) {
       ),
       column(
         width = 6,
-        shinyWidgets::pickerInput(
+        pickerInput(
           inputId = ns("packages_shiny"), 
           label = "Packages to load :",
           choices = params$packages$default, multiple = TRUE, 
@@ -124,7 +125,7 @@ createScriptsAppUI <- function(id, params, author = NULL) {
     fluidRow(
       column(
         width = 12,
-        br(),
+        tags$br(),
         tags$div(
           style = "float:right",
           actionButton(
@@ -151,6 +152,8 @@ createScriptsAppUI <- function(id, params, author = NULL) {
 #'
 #' @noRd
 #' @importFrom shinyWidgets updatePickerInput
+#' @importFrom shiny observeEvent
+#' 
 createScriptsAppServer <- function(input, output, session, trigger) {
   
   ns <- session$ns
@@ -178,7 +181,7 @@ createScriptsAppServer <- function(input, output, session, trigger) {
   }, ignoreInit = FALSE)
   
   observeEvent(trigger$x, {
-    shinyWidgets::updatePickerInput(
+    updatePickerInput(
       session = session, 
       inputId = "path_shiny",
       choices = c(".", list_dirs(recursive = FALSE)),

@@ -2,8 +2,8 @@
 #'
 #' @return a taglist
 #' @noRd
-#' @importFrom htmltools includeMarkdown
-#' @importFrom markdown markdownToHTML
+#' @importFrom htmltools includeMarkdown tags tagList
+#' @importFrom shiny tabsetPanel tabPanel icon HTML
 helpAddinit <- function() {
   
   tagList(
@@ -13,9 +13,9 @@ helpAddinit <- function() {
         title = "Welcome",
         
         tags$h3("Welcome to addinit !"),
-        br(),
+        tags$br(),
         tags$p("Simplify your project's and shiny application setup with ", tags$b("addinit"), " !"),
-        br(),
+        tags$br(),
         tags$ol(
           tags$li("Create a project within RStudio"),
           tags$li("Launch addinit in the Addins menu"),
@@ -23,8 +23,8 @@ helpAddinit <- function() {
           tags$li("Initialize a template for a simple script or a Shiny application"),
           tags$li("Enjoy & start coding !")
         ),
-        br(),
-        br(),
+        tags$br(),
+        tags$br(),
         tags$p(
           "More information on :",
           tags$a(icon("github"), href = "https://github.com/dreamRs/addinit")
@@ -36,8 +36,8 @@ helpAddinit <- function() {
             href = "https://github.com/dreamRs/addinit/issues"
           )
         ),
-        br(),
-        br(),
+        tags$br(),
+        tags$br(),
         tags$p(
           "Keep Calm and use", tags$b("addinit") , "!",
           tags$a(
@@ -50,7 +50,7 @@ helpAddinit <- function() {
       
       tabPanel(
         title = "Configuration",
-        br(),
+        tags$br(),
         tags$p(
           "You can customize a lot of options in addinit, for example the names",
           "of the directories to create or a default author for the scripts.",
@@ -58,7 +58,7 @@ helpAddinit <- function() {
           "set the option addinit in your .Rprofile."
         ),
         tags$div(style = "max-height: 300px;overflow-y: scroll;",
-        htmltools::includeMarkdown(path = system.file('www/params.md', package='addinit')))
+        includeMarkdown(path = system.file('www/params.md', package='addinit')))
       )
       
     ),

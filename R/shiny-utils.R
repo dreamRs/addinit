@@ -6,6 +6,7 @@
 #'
 #' @return a script tag.
 #' @noRd
+#' @importFrom htmltools tags
 toggleInputUi <- function() {
   
   tags$script(

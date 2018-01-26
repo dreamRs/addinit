@@ -9,26 +9,27 @@
 #' @noRd
 #' @importFrom shinyWidgets pickerInput awesomeCheckbox materialSwitch
 #' @importFrom htmltools tags tagList
-#' @import shiny
+#' @importFrom shiny NS fluidRow column conditionalPanel actionButton icon
+# @import shiny
 createScriptsProjectUI <- function(id, params, author = NULL) {
   
   # Namespace
   ns <- NS(id)
   
-  htmltools::tagList(
+  tagList(
     fluidRow(
       column(
         width = 12,
         tags$hr(class = "addInit-hr"),
-        h4("Create scripts", class = "addInit-h4"),
+        tags$h4("Create scripts", class = "addInit-h4"),
         tags$hr(class = "addInit-hr")
       )
     ),
-    br(),
+    tags$br(),
     fluidRow(
       column(
         width = 6,
-        shinyWidgets::pickerInput(
+        pickerInput(
           inputId = ns("path"), label = "Where :", 
           choices = c(". (root)" = ".", list_dirs(recursive = FALSE)), selected = ".",
           options = list(size = 5)
@@ -82,7 +83,7 @@ createScriptsProjectUI <- function(id, params, author = NULL) {
       ),
       column(
         width = 6,
-        shinyWidgets::pickerInput(
+        pickerInput(
           inputId = ns("packages"), 
           label = "Packages to load :",
           choices = params$packages$default,
@@ -99,7 +100,7 @@ createScriptsProjectUI <- function(id, params, author = NULL) {
     fluidRow(
       column(
         width = 6,
-        shinyWidgets::awesomeCheckbox(
+        awesomeCheckbox(
           inputId = ns("config_script"), 
           label = "Config Script", 
           value = FALSE,
@@ -112,7 +113,7 @@ createScriptsProjectUI <- function(id, params, author = NULL) {
           condition = "input.config_script == true",
           column(
             width = 6, 
-            shinyWidgets::materialSwitch(
+            materialSwitch(
               inputId = ns("config"), 
               label = "Add config list",
               value = params$config,
@@ -122,7 +123,7 @@ createScriptsProjectUI <- function(id, params, author = NULL) {
           ),
           column(
             width = 6,
-            shinyWidgets::materialSwitch(
+            materialSwitch(
               inputId = ns("source_funs"), 
               label = "Source function",
               value = params$source_funs,
@@ -136,7 +137,7 @@ createScriptsProjectUI <- function(id, params, author = NULL) {
     fluidRow(
       column(
         width = 12,
-        br(),
+        tags$br(),
         tags$div(
           style = "float:right",
           actionButton(
@@ -162,6 +163,9 @@ createScriptsProjectUI <- function(id, params, author = NULL) {
 #' @param output  standard \code{shiny} output
 #' @param session standard \code{shiny} session
 #' @param trigger ReactiveValues to trigger update of folders
+#' 
+#' @importFrom shiny observeEvent
+#' @importFrom shinyWidgets updatePickerInput
 #'
 #' @noRd
 createScriptsProjectServer <- function(input, output, session, trigger) {
@@ -177,7 +181,7 @@ createScriptsProjectServer <- function(input, output, session, trigger) {
   
   
   observeEvent(trigger$x, {
-    shinyWidgets::updatePickerInput(session = session, inputId = "path",
+    updatePickerInput(session = session, inputId = "path",
                                     choices = c(".", list_dirs(recursive = FALSE)), 
                                     selected = ".")
   })
