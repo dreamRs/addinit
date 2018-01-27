@@ -1,7 +1,7 @@
 Package: addinit
 Type: Package
 Title: Initialize an 'RStudio' Project or a Shiny Application
-Version: 0.1.3.900
+Version: 0.1.3.910
 Authors@R: c(person("Fanny", "Meyer", , "fanny.meyer@dreamrs.fr", c("aut", "cre")),
   person("Victor", "Perrier", , "victor.perrier@dreamrs.fr", c("aut")))
 Description: A Shiny gadget to initialize your projects with a specified structure, and create implementation scaffolding for a Shiny application.

@@ -370,7 +370,7 @@ load_packages <- function(packages) {
 
 
 
-#' Initialize a cript from a template
+#' Initialize a script from a template
 #'
 #' @param type Tpe of script : script, shiny, dashboard, miniapp.
 #' @param ... additionnal arguments to put in the template
@@ -403,7 +403,7 @@ init_script <- function(type, ...) {
   } else if (type == "shiny") {
     render_script(
       template = system.file('www/templates/shiny/ui.R', package='addinit'),
-      path = ".",
+      path = args$path,
       name = "ui", 
       author = args$author,
       title = args$title, 
@@ -412,7 +412,7 @@ init_script <- function(type, ...) {
     )
     render_script(
       template = system.file('www/templates/shiny/server.R', package='addinit'),
-      path = ".",
+      path = args$path,
       name = "server", 
       author = args$author,
       title = args$title, 
@@ -421,7 +421,7 @@ init_script <- function(type, ...) {
     )
     render_script(
       template = system.file('www/templates/shiny/global.R', package='addinit'),
-      path = ".",
+      path = args$path,
       name = "global", 
       author = args$author,
       title = args$title, 
@@ -431,7 +431,7 @@ init_script <- function(type, ...) {
   } else if (type == "dashboard") {
     render_script(
       template = system.file('www/templates/dashboard/ui.R', package='addinit'),
-      path = ".",
+      path = args$path,
       name = "ui", 
       author = args$author,
       title = args$title, 
@@ -440,7 +440,7 @@ init_script <- function(type, ...) {
     )
     render_script(
       template = system.file('www/templates/dashboard/server.R', package='addinit'),
-      path = ".",
+      path = args$path,
       name = "server", 
       author = args$author,
       title = args$title, 
@@ -449,7 +449,7 @@ init_script <- function(type, ...) {
     )
     render_script(
       template = system.file('www/templates/dashboard/global.R', package='addinit'),
-      path = ".",
+      path = args$path,
       name = "global", 
       author = args$author,
       title = args$title, 
@@ -459,7 +459,7 @@ init_script <- function(type, ...) {
   } else if (type == "miniapp") {
     render_script(
       template = system.file('www/templates/app/app.R', package='addinit'),
-      path = ".",
+      path = args$path,
       name = "app", 
       author = args$author,
       title = args$title, 

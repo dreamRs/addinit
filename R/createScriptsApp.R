@@ -166,12 +166,12 @@ createScriptsAppServer <- function(input, output, session, trigger) {
       #   inputId = ns("script_title_shiny"), 
       #   enable = !input$basic_shiny_script
       # )
-      toggleInputServer(
-        session = session,
-        inputId = ns("path_shiny"),
-        enable = !input$basic_shiny_script, 
-        picker = TRUE
-      )
+      # toggleInputServer(
+      #   session = session,
+      #   inputId = ns("path_shiny"),
+      #   enable = !input$basic_shiny_script, 
+      #   picker = TRUE
+      # )
       toggleInputServer(
         session = session, 
         inputId = ns("script_name_shiny"), 
@@ -195,6 +195,8 @@ createScriptsAppServer <- function(input, output, session, trigger) {
       tryAlert(
         expr = init_script(
           type = input$type_shiny_app,
+          path = input$path_shiny,
+          title = input$script_title_shiny,
           author = input$author_shiny, 
           packages = input$packages_shiny
         ), 
