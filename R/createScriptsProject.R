@@ -110,7 +110,8 @@ createScriptsProjectUI <- function(id, params, author = NULL) {
       column(
         width = 6,
         conditionalPanel(
-          condition = "input.config_script == true",
+          condition = "input.config_script == true", 
+          ns = ns,
           column(
             width = 6, 
             materialSwitch(
@@ -197,7 +198,7 @@ createScriptsProjectServer <- function(input, output, session, trigger) {
           packages = input$packages,
           config = input$config, 
           funs = input$source_funs,
-          path = input$config_path
+          path = input$path
         ), 
         success_text = "Script successfully created !",
         error_text = "Ooops... Something went wrong"
