@@ -167,14 +167,14 @@ create_config <- function(author = "", packages = "", config = FALSE, funs = FAL
     template = config_template, 
     data = list(
       author = author, 
-      date = enc2utf8(format(Sys.Date(), format = "%A %d %B %Y")),
+      date = format(Sys.Date(), format = "%F"),
       packages = packages,
       config = config, 
       funs = funs
     )
   )
-  fileCon <- file(file.path(path, "config.R"))
-  writeLines(text = content, con = fileCon)
+  fileCon <- file(file.path(path, "config.R"), encoding = "UTF-8")
+  writeLines(text = enc2utf8(content), con = fileCon)
   close(fileCon)
   rstudioapi::navigateToFile(file = file.path(path, "config.R"))
   invisible()
@@ -220,7 +220,7 @@ create_shiny_script <- function(author = "", packages = "", ui = TRUE, server = 
       template = global_template, 
       data = list(
         author = author, 
-        date = format(Sys.Date(), format = "%A %d %B %Y"),
+        date = format(Sys.Date(), format = "%F"),
         packages = packages
       )
     )
@@ -241,10 +241,10 @@ create_shiny_script <- function(author = "", packages = "", ui = TRUE, server = 
     # Content
     content <- whisker::whisker.render(
       template = ui_template, 
-      data = list(author = author, date = enc2utf8(format(Sys.Date(), format = "%A %d %B %Y")))
+      data = list(author = author, date = format(Sys.Date(), format = "%F"))
     )
-    fileCon <- file(file.path("ui.R"))
-    writeLines(text = content, con = fileCon)
+    fileCon <- file(file.path("ui.R"), encoding = "UTF-8")
+    writeLines(text = enc2utf8(content), con = fileCon)
     close(fileCon)
     rstudioapi::navigateToFile(file = file.path("ui.R"))
     invisible()
@@ -260,9 +260,9 @@ create_shiny_script <- function(author = "", packages = "", ui = TRUE, server = 
     # Content
     content <- whisker::whisker.render(
       template = server_template, 
-      data = list(author = author, date = enc2utf8(format(Sys.Date(), format = "%A %d %B %Y")))
+      data = list(author = author, date = format(Sys.Date(), format = "%F"))
     )
-    fileCon <- file(file.path("server.R"))
+    fileCon <- file(file.path("server.R"), encoding = "UTF-8")
     writeLines(text = content, con = fileCon)
     close(fileCon)
     rstudioapi::navigateToFile(file = file.path("server.R"))
@@ -293,14 +293,14 @@ create_script <- function(path = ".", name = "script", author = "", title = "", 
     template = script_template, 
     data = list(
       author = author %||% "",
-      date = enc2utf8(format(Sys.Date(), format = "%A %d %B %Y")),
+      date = format(Sys.Date(), format = "%F"),
       title = title %||% "",
       packages = load_packages(packages)
     )
   )
   name <- paste0(name, ".R")
-  fileCon <- file(file.path(path, name))
-  writeLines(text = content, con = fileCon)
+  fileCon <- file(file.path(path, name), encoding = "UTF-8")
+  writeLines(text = enc2utf8(content), con = fileCon)
   close(fileCon)
   rstudioapi::navigateToFile(file = file.path(path, name))
   invisible()
@@ -397,7 +397,7 @@ init_script <- function(type, ...) {
       name = args$name, 
       author = args$author,
       title = args$title, 
-      date = format(Sys.Date(), format = "%A %d %B %Y"),
+      date = format(Sys.Date(), format = "%F"),
       packages = load_packages(args$packages)
     )
   } else if (type == "shiny") {
@@ -407,7 +407,7 @@ init_script <- function(type, ...) {
       name = "ui", 
       author = args$author,
       title = args$title, 
-      date = format(Sys.Date(), format = "%A %d %B %Y"),
+      date = format(Sys.Date(), format = "%F"),
       packages = load_packages(args$packages)
     )
     render_script(
@@ -416,7 +416,7 @@ init_script <- function(type, ...) {
       name = "server", 
       author = args$author,
       title = args$title, 
-      date = format(Sys.Date(), format = "%A %d %B %Y"),
+      date = format(Sys.Date(), format = "%F"),
       packages = load_packages(args$packages)
     )
     render_script(
@@ -425,7 +425,7 @@ init_script <- function(type, ...) {
       name = "global", 
       author = args$author,
       title = args$title, 
-      date = format(Sys.Date(), format = "%A %d %B %Y"),
+      date = format(Sys.Date(), format = "%F"),
       packages = load_packages(args$packages)
     )
   } else if (type == "dashboard") {
@@ -435,7 +435,7 @@ init_script <- function(type, ...) {
       name = "ui", 
       author = args$author,
       title = args$title, 
-      date = format(Sys.Date(), format = "%A %d %B %Y"),
+      date = format(Sys.Date(), format = "%F"),
       packages = load_packages(args$packages)
     )
     render_script(
@@ -444,7 +444,7 @@ init_script <- function(type, ...) {
       name = "server", 
       author = args$author,
       title = args$title, 
-      date = format(Sys.Date(), format = "%A %d %B %Y"),
+      date = format(Sys.Date(), format = "%F"),
       packages = load_packages(args$packages)
     )
     render_script(
@@ -453,7 +453,7 @@ init_script <- function(type, ...) {
       name = "global", 
       author = args$author,
       title = args$title, 
-      date = format(Sys.Date(), format = "%A %d %B %Y"),
+      date = format(Sys.Date(), format = "%F"),
       packages = load_packages(args$packages)
     )
   } else if (type == "miniapp") {
@@ -463,7 +463,7 @@ init_script <- function(type, ...) {
       name = "app", 
       author = args$author,
       title = args$title, 
-      date = format(Sys.Date(), format = "%A %d %B %Y"),
+      date = format(Sys.Date(), format = "%F"),
       packages = load_packages(args$packages)
     )
   }
