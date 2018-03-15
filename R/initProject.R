@@ -16,7 +16,7 @@
 #'  \item \strong{template:} Template to create, `shiny` for a classic shiny app (ui, server, global), `dashboard` for use shinydashboard, `miniapp` for a single file app (app.R)
 #' }
 #' 
-#'
+#' @param author_name Name of the author
 #' @return the return of \code{\link[shiny]{runGadget}}
 #' @export
 #' 
