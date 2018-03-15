@@ -27,7 +27,7 @@
 #' \dontrun{
 #' # you can launch the addin via the RStudio Addins menu
 #' # or in the console :
-#' addinit::initProject()
+#' addinit::initProject(author_name)
 #' 
 #' # Change default parameters
 #' # (you can put this in your Rprofile) :
