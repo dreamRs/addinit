@@ -48,18 +48,19 @@
 #' 
 #' # Then relaunch the addin
 #' }
-initProject <- function() {
+initProject <- function(author_name) {
   
   # Parameters
   params_default <- list(
-    author = NULL,
+    author = author_name,
     project = list(
       folders = list(
-        default = c("scripts", "datas", "funs", "inputs", "outputs", "logs")
+        default = c("scripts", "data", "functions", "inputs", "outputs", "logs", "reports"),
+        selected = c("scripts", "data", "functions", "inputs", "outputs", "logs", "reports")
       ),
       packages = list(
         default = rownames(utils::installed.packages()),
-        selected = NULL
+        selected = c("data.table","lubridate","openxlsx"  )
       ),
       config = TRUE,
       source_funs = FALSE
@@ -69,8 +70,8 @@ initProject <- function() {
         default = c("datas", "funs", "modules", "www")
       ),
       packages = list(
-        default = rownames(installed.packages()),
-        selected = NULL
+        default = rownames(utils::installed.packages()),
+        selected = c("data.table","lubridate","openxlsx"  )
       ),
       create_template = TRUE,
       template = "dashboard"

@@ -18,7 +18,7 @@
 create_dirs <- function(paths) {
   status <- logical(0)
   for (i in seq_along(paths)) {
-    status[i] <- dir.create(path = paths[i], showWarnings = FALSE)
+    status[i] <- dir.create(path = paths[i], showWarnings = FALSE,recursive = T)
   }
   return(status)
 }
