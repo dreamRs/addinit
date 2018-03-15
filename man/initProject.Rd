@@ -4,7 +4,10 @@
 \alias{initProject}
 \title{Initialize an 'RStudio' Project or a Shiny Application}
 \usage{
-initProject()
+initProject(author_name)
+}
+\arguments{
+\item{author_name}{Name of the author}
 }
 \value{
 the return of \code{\link[shiny]{runGadget}}
@@ -31,7 +34,7 @@ You can change some default parameters if you want, look at example below, here'
 \dontrun{
 # you can launch the addin via the RStudio Addins menu
 # or in the console :
-addinit::initProject()
+addinit::initProject(author_name)
 
 # Change default parameters
 # (you can put this in your Rprofile) :

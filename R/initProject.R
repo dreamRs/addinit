@@ -16,7 +16,7 @@
 #'  \item \strong{template:} Template to create, `shiny` for a classic shiny app (ui, server, global), `dashboard` for use shinydashboard, `miniapp` for a single file app (app.R)
 #' }
 #' 
-#'
+#' @param author_name Name of the author
 #' @return the return of \code{\link[shiny]{runGadget}}
 #' @export
 #' 
@@ -27,7 +27,7 @@
 #' \dontrun{
 #' # you can launch the addin via the RStudio Addins menu
 #' # or in the console :
-#' addinit::initProject()
+#' addinit::initProject(author_name)
 #' 
 #' # Change default parameters
 #' # (you can put this in your Rprofile) :
@@ -48,18 +48,19 @@
 #' 
 #' # Then relaunch the addin
 #' }
-initProject <- function() {
+initProject <- function(author_name) {
   
   # Parameters
   params_default <- list(
-    author = NULL,
+    author = author_name,
     project = list(
       folders = list(
-        default = c("scripts", "datas", "funs", "inputs", "outputs", "logs")
+        default = c("scripts", "data", "functions", "inputs", "outputs", "logs", "reports"),
+        selected = c("scripts", "data", "functions", "inputs", "outputs", "logs", "reports")
       ),
       packages = list(
         default = rownames(utils::installed.packages()),
-        selected = NULL
+        selected = c("data.table","lubridate","openxlsx"  )
       ),
       config = TRUE,
       source_funs = FALSE
@@ -69,8 +70,8 @@ initProject <- function() {
         default = c("datas", "funs", "modules", "www")
       ),
       packages = list(
-        default = rownames(installed.packages()),
-        selected = NULL
+        default = rownames(utils::installed.packages()),
+        selected = c("data.table","lubridate","openxlsx"  )
       ),
       create_template = TRUE,
       template = "dashboard"
