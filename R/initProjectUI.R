@@ -39,7 +39,6 @@ initProjectUI <- function(params) {
         icon = icon("folder"),
         miniContentPanel(
           
-          
           createFoldersUi(id = "project", params = params$project, title = "Create folders")
           
           , tags$br(),
@@ -50,6 +49,14 @@ initProjectUI <- function(params) {
             author  = getOption(x = "addinit.author", default = params$author)
           )
           
+        ), 
+        miniUI::miniButtonBlock(
+          actionButton(
+            inputId = "add_readme", 
+            label = "Add README", 
+            class = "btn-primary", 
+            icon = icon("file-text")
+          )
         )
       ),
       
@@ -59,7 +66,6 @@ initProjectUI <- function(params) {
         value = "application",
         icon = icon("cubes"),
         miniContentPanel(
-          
           
           createFoldersUi(id = "application", params = params$application, title = "Create folders")
           

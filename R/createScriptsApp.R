@@ -193,7 +193,7 @@ createScriptsAppServer <- function(input, output, session, trigger) {
     
     if (input$basic_shiny_script){
       tryAlert(
-        expr = init_script(
+        expr = create_app(
           type = input$type_shiny_app,
           path = input$path_shiny,
           title = input$script_title_shiny,

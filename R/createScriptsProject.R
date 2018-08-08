@@ -87,7 +87,7 @@ createScriptsProjectUI <- function(id, params, author = NULL) {
           inputId = ns("packages"), 
           label = "Packages to load :",
           choices = params$packages$default,
-          multiple = TRUE, 
+          multiple = TRUE, width = "100%",
           options = list(`live-search` = TRUE, 
                          size = 10, 
                          `selected-text-format` = "count > 3", 
@@ -97,58 +97,11 @@ createScriptsProjectUI <- function(id, params, author = NULL) {
         )
       )
     ),
-    fluidRow(
-      column(
-        width = 6,
-        awesomeCheckbox(
-          inputId = ns("config_script"), 
-          label = "Config Script", 
-          value = FALSE,
-          status = "info"
-        )
-      ),
-      column(
-        width = 6,
-        conditionalPanel(
-          condition = "input.config_script == true", 
-          ns = ns,
-          column(
-            width = 6, 
-            materialSwitch(
-              inputId = ns("config"), 
-              label = "Add config list",
-              value = params$config,
-              status = "warning", 
-              right = TRUE
-            )
-          ),
-          column(
-            width = 6,
-            materialSwitch(
-              inputId = ns("source_funs"), 
-              label = "Source function",
-              value = params$source_funs,
-              status = "warning", 
-              right = TRUE
-            )
-          )
-        )
-      )
-    ),
-    fluidRow(
-      column(
-        width = 12,
-        tags$br(),
-        tags$div(
-          style = "float:right",
-          actionButton(
-            inputId = ns("script_create"),
-            label = "Add script", 
-            icon = icon("file-code-o"),
-            class = "btn-primary"
-          )
-        )
-      )
+    actionButton(
+      inputId = ns("script_create"),
+      label = "Add script", 
+      icon = icon("file-code-o"),
+      class = "btn-primary pull-right"
     )
   )
 }
@@ -172,50 +125,32 @@ createScriptsProjectUI <- function(id, params, author = NULL) {
 createScriptsProjectServer <- function(input, output, session, trigger) {
   
   ns <- session$ns
-  
-  observeEvent(input$config_script == TRUE, {
-    if (!is.null(input$config_script)) {
-      toggleInputServer(session = session, inputId = ns("script_title"), enable = !input$config_script)
-    }
-  })
-  
-  
+
   
   observeEvent(trigger$x, {
-    updatePickerInput(session = session, inputId = "path",
-                                    choices = c(".", list_dirs(recursive = FALSE)), 
-                                    selected = ".")
+    updatePickerInput(
+      session = session, 
+      inputId = "path",
+      choices = c(".", list_dirs(recursive = FALSE)), 
+      selected = "."
+    )
   })
   
   
   
   observeEvent(input$script_create, {
     
-    if (input$config_script){
-      tryAlert(
-        expr = create_config(
-          author = input$author, 
-          packages = input$packages,
-          config = input$config, 
-          funs = input$source_funs,
-          path = input$path
-        ), 
-        success_text = "Script successfully created !",
-        error_text = "Ooops... Something went wrong"
-      )
-    } else {
-      tryAlert(
-        expr = create_script(
-          path = input$path, 
-          name = input$script_name, 
-          author = input$author, 
-          title = input$script_title,
-          packages = input$packages
-        ), 
-        success_text = "Script successfully created !",
-        error_text = "Ooops... Something went wrong"
-      )
-    }
+    tryAlert(
+      expr = create_script(
+        path = input$path, 
+        name = input$script_name, 
+        author = input$author, 
+        title = input$script_title,
+        packages = input$packages
+      ), 
+      success_text = "Script successfully created !",
+      error_text = "Ooops... Something went wrong"
+    )
     
   })
   

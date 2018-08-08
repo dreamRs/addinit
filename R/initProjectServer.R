@@ -8,17 +8,33 @@
 #' 
 #' @importFrom shiny observeEvent showModal modalDialog callModule stopApp modalButton
 #' @importFrom htmltools tags
+#' @importFrom usethis use_readme_md
 #'
 initProjectServer <- function(input, output, session) {
   
   # Help modal
   observeEvent(input$help, {
     showModal(modalDialog(
-      title = NULL, easyClose = TRUE, size = "m", footer = tags$p(
-        tags$a(tags$img(src = "addinit/logo.png", align = "left", style="width:13%"), href = "https://www.dreamrs.fr/"), 
-        modalButton("Cancel")),
+      title = NULL,
+      easyClose = TRUE,
+      size = "m", 
+      footer = tags$p(
+        tags$a(
+          tags$img(src = "addinit/logo.png", align = "left", style="width:13%"),
+          href = "https://www.dreamrs.fr/"
+        ), 
+        modalButton("Cancel")
+      ),
       helpAddinit()
     ))
+  })
+  
+  trigger_new_dirs <- reactiveValues(x = Sys.time())
+  observeEvent(update_folders_project$x, {
+    trigger_new_dirs$x <- Sys.time()
+  })
+  observeEvent(update_folders_shiny$x, {
+    trigger_new_dirs$x <- Sys.time()
   })
   
   # Project ----
@@ -31,8 +47,10 @@ initProjectServer <- function(input, output, session) {
   callModule(
     module = createScriptsProjectServer, 
     id = "project-scripts", 
-    trigger = update_folders_project
+    trigger = trigger_new_dirs
   )
+  
+  observeEvent(input$add_readme, usethis::use_readme_md())
   
   
   # App ----
@@ -46,7 +64,7 @@ initProjectServer <- function(input, output, session) {
   callModule(
     module = createScriptsAppServer, 
     id = "apps-scripts", 
-    trigger = update_folders_shiny
+    trigger = trigger_new_dirs
   )
   
   # close app ----
