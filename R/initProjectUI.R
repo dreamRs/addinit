@@ -15,7 +15,7 @@ initProjectUI <- function(params) {
     # header
     tags$div(
       class = "gadget-title addInit-header",
-      tags$div("Init Project", class = "addInit-title"),
+      tags$div(icon("lightbulb-o"), "Init Project", class = "addInit-title"),
       tags$div(
         class = "pull-left",
         miniTitleBarButton(inputId = "help", label = "Help")

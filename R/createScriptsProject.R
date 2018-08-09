@@ -99,7 +99,7 @@ createScriptsProjectUI <- function(id, params, author = NULL) {
     ),
     actionButton(
       inputId = ns("script_create"),
-      label = "Add script", 
+      label = "Create script!", 
       icon = icon("file-code-o"),
       class = "btn-primary pull-right"
     )

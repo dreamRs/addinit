@@ -16,7 +16,8 @@ initProjectServer <- function(input, output, session) {
   observeEvent(input$help, {
     showModal(modalDialog(
       title = NULL,
-      easyClose = TRUE,
+      easyClose = TRUE, 
+      fade = FALSE,
       size = "m", 
       footer = tags$p(
         tags$a(
@@ -50,6 +51,11 @@ initProjectServer <- function(input, output, session) {
     trigger = trigger_new_dirs
   )
   
+  toggleInputServer(
+    session = session, 
+    inputId = "add_readme", 
+    enable = !file.exists("README.md")
+  )
   observeEvent(input$add_readme, usethis::use_readme_md())
   
   

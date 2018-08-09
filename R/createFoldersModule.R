@@ -59,9 +59,14 @@ createFoldersUi <- function(id, params, title = "Create folders") {
         width = 8,
         tags$h4("Folders :", class = "addInit-label"),
         checkboxGroupButtons(
-          inputId = ns("folders"), label = NULL, choices = params$folders$default, justified = TRUE, 
-          status = "info", selected = params$folders$selected,
-          checkIcon = list(yes = tags$i(class = "fa fa-check-square"), no = tags$i(class = "fa fa-square-o"))
+          inputId = ns("folders"), 
+          label = NULL, 
+          choices = params$folders$default, 
+          selected = params$folders$selected,
+          justified = TRUE, 
+          status = "info",
+          checkIcon = list(yes = tags$i(class = "fa fa-check-square"), 
+                           no = tags$i(class = "fa fa-square-o"))
         )
       ),
       column(
@@ -81,8 +86,10 @@ createFoldersUi <- function(id, params, title = "Create folders") {
           class = "pull-right",
           tags$br(),
           actionButton(
-            inputId = ns("folders_create"), label = "Create folders !", 
-            icon = icon("folder-o"), class = "btn-primary"
+            inputId = ns("folders_create"), 
+            label = "Create folders!", 
+            icon = icon("folder-o"), 
+            class = "btn-primary"
           )
         )
       )
