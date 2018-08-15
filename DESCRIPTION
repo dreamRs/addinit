@@ -10,6 +10,7 @@ Description: A Shiny gadget to initialize your projects with a specified structu
 URL: https://github.com/dreamRs/addinit
 BugReports: https://github.com/dreamRs/addinit/issues
 License: GPL-3 | file LICENSE
+Encoding: UTF-8
 LazyData: TRUE
 Imports: miniUI,
     rstudioapi,

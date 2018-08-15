@@ -22,7 +22,7 @@ initProjectUI <- function(params) {
       ),
       tags$div(
         class = "pull-right",
-        miniTitleBarButton(inputId = "cancel", label = "Cancel")
+        miniTitleBarButton(inputId = "cancel", label = "Close")
       )
     ),
     
