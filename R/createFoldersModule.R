@@ -111,7 +111,8 @@ createFoldersUi <- function(id, params, title = "Create folders") {
 #' @noRd
 #' 
 #' @importFrom htmltools tags
-#' @importFrom shiny reactiveValues observeEvent showModal modalDialog
+#' @importFrom shiny reactiveValues observeEvent showModal modalDialog updateTextInput
+#' @importFrom shinyWidgets updateCheckboxGroupButtons
 #' 
 createFoldersServer <- function(input, output, session) {
   
@@ -130,8 +131,18 @@ createFoldersServer <- function(input, output, session) {
         status_folders
       )
     ))
-    
-    res$x <- input$folders_create
+    updateCheckboxGroupButtons(
+      session = session, 
+      inputId = "folders", 
+      selected = character(0), 
+      status = "info"
+    )
+    updateTextInput(
+      session = session, 
+      inputId = "folders_other",
+      value = ""
+    )
+    res$x <- c(res$x, input$folders_create)
   })
   
   return(res)
