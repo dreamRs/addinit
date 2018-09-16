@@ -2,7 +2,7 @@
 
 #  ------------------------------------------------------------------------
 #
-# Title : App - Global
+# Title : {{title}} - Global
 #    By : {{author}}
 #  Date : {{date}}
 #    
@@ -10,7 +10,7 @@
 
 
 
-{{packages}}
+{{{packages}}}
 
 
 

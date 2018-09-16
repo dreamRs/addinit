@@ -2,15 +2,15 @@
 
 #  ------------------------------------------------------------------------
 #
-# Title : App - UI
+# Title : {{title}} - UI
 #    By : {{author}}
 #  Date : {{date}}
 #    
 #  ------------------------------------------------------------------------
 
 
-library(shiny)
-library(shinydashboard)
+library("shiny")
+library("shinydashboard")
 
 
 

@@ -2,14 +2,14 @@
 
 #  ------------------------------------------------------------------------
 #
-# Title : App - Server
+# Title : {{title}} - Server
 #    By : {{author}}
 #  Date : {{date}}
 #    
 #  ------------------------------------------------------------------------
 
-library(shiny)
-library(shinydashboard)
+library("shiny")
+library("shinydashboard")
 
 function(input, output, session) {
   
