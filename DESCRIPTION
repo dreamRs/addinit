@@ -3,7 +3,7 @@ Type: Package
 Title: Initialize an 'RStudio' Project or a Shiny Application
 Version: 0.2.2
 Authors@R: c(
-    person("Fanny", "Meyer", email = "fanny.meyer<at>dreamrs.fr", role = c("aut", "cre")),
+    person("Fanny", "Meyer", email = "fanny.meyer@dreamrs.fr", role = c("aut", "cre")),
     person("Victor", "Perrier", role = "aut"),
     person("dreamRs", role = "cph")
   )
