@@ -1,9 +1,12 @@
 # addinit
 
-
 > Addin for initializing new projects
 
+<!-- badges: start -->
 [![Travis-CI Build Status](https://travis-ci.org/dreamRs/addinit.svg?branch=master)](https://travis-ci.org/dreamRs/addinit)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![R-CMD-check](https://github.com/dreamRs/addinit/workflows/R-CMD-check/badge.svg)](https://github.com/dreamRs/addinit/actions)
+<!-- badges: end -->
 
 
 ## Overview
@@ -55,7 +58,7 @@ my_custom_params <- list(
       selected = NULL
     ),
     packages = list(
-      default = rownames(installed.packages()),
+      default = rownames(utils::installed.packages()),
       selected = NULL
     ),
     create_template = TRUE,
@@ -78,7 +81,7 @@ my_custom_params <- list(
       selected = c("R", "man")
     ),
     packages = list(
-      default = rownames(installed.packages()),
+      default = rownames(utils::installed.packages()),
       selected = "shiny"
     )
   )

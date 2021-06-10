@@ -2,8 +2,8 @@
 #'
 #' @noRd
 #' 
-#' @importFrom miniUI miniPage miniTitleBarButton miniTabstripPanel miniTabPanel miniContentPanel
-#' @importFrom shiny icon
+#' @importFrom miniUI miniPage miniTabstripPanel miniTabPanel miniContentPanel
+#' @importFrom shiny icon actionButton
 #' @importFrom htmltools tags
 #'
 initProjectUI <- function(params) {
@@ -14,15 +14,27 @@ initProjectUI <- function(params) {
     
     # header
     tags$div(
-      class = "gadget-title addInit-header",
-      tags$div(icon("lightbulb-o"), "Init Project", class = "addInit-title"),
+      class = "gadget-title addinit-title-container",
+      tags$div(icon("lightbulb-o"), "Initiate a project", class = "addinit-title"),
       tags$div(
         class = "pull-left",
-        miniTitleBarButton(inputId = "help", label = "Help")
+        actionButton(
+          inputId = "help",
+          label = NULL,
+          icon = icon("question", class = "fa-lg"),
+          class = "btn-sm",
+          title = "Help"
+        )
       ),
       tags$div(
         class = "pull-right",
-        miniTitleBarButton(inputId = "cancel", label = "Close")
+        actionButton(
+          inputId = "close",
+          label = NULL,
+          icon = icon("times", class = "fa-lg"),
+          class = "btn-sm",
+          title = "Close Window"
+        )
       )
     ),
     

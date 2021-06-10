@@ -49,15 +49,15 @@ createFoldersUi <- function(id, params, title = "Create folders") {
     fluidRow(
       column(
         width = 12,
-        tags$hr(class = "addInit-hr"),
-        tags$h4(title, class = "addInit-h4"),
-        tags$hr(class = "addInit-hr")
+        tags$hr(class = "addinit-hr"),
+        tags$h4(title, class = "addinit-h4"),
+        tags$hr(class = "addinit-hr")
       )
     ),
     fluidRow(
       column(
         width = 8,
-        tags$h4("Folders :", class = "addInit-label"),
+        tags$h4("Folders :", class = "addinit-label"),
         checkboxGroupButtons(
           inputId = ns("folders"), 
           label = NULL, 
@@ -71,7 +71,7 @@ createFoldersUi <- function(id, params, title = "Create folders") {
       ),
       column(
         width = 4,
-        tags$h4("Others :", class = "addInit-label"),
+        tags$h4("Others :", class = "addinit-label"),
         textInput(
           inputId = ns("folders_other"),
           label = NULL,
@@ -87,7 +87,7 @@ createFoldersUi <- function(id, params, title = "Create folders") {
           tags$br(),
           actionButton(
             inputId = ns("folders_create"), 
-            label = "Create folders!", 
+            label = "Create folders", 
             icon = icon("folder-o"), 
             class = "btn-primary"
           )

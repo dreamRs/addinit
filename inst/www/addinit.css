@@ -2,12 +2,12 @@
 
 /* addInit CSS */
 
-.addInit-header {
+.addinit-title-container {
   background-color: rgb(16, 34, 70);
   height: 50px;
 }
 
-.addInit-title {
+.addinit-title {
   color: white;
   text-align: center;
   font-size: 30px;
@@ -22,7 +22,17 @@
   z-index: 0;
 }
 
-.addInit-hr {
+.addinit-title-container button.btn {
+  position: relative;
+  height: 31px;
+  z-index: 10;
+  color: #FFF;
+  background: transparent;
+  border: none;
+  margin: 7px 5px 0px 5px;
+}
+
+.addinit-hr {
   size: 10;
   width: 100%;
   border-top: 5px solid #eee;
@@ -30,7 +40,7 @@
   margin-bottom: 1px;
 }
 
-.addInit-h4 {
+.addinit-h4 {
   color: rgb(16, 34, 70);
   text-align: center;
   font-size: 20px; 
@@ -38,7 +48,7 @@
   margin-bottom: 5px;
 }
 
-.addInit-label {
+.addinit-label {
   color: rgb(16, 34, 70);
 }
 

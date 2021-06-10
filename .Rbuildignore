@@ -4,3 +4,5 @@ test/
 examples/
 ^\.travis\.yml$
 ^cran-comments\.md$
+^LICENSE\.md$
+^\.github$

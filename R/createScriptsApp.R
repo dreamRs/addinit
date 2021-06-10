@@ -20,9 +20,9 @@ createScriptsAppUI <- function(id, params, author = NULL) {
     fluidRow(
       column(
         width = 12,
-        tags$hr(class = "addInit-hr"),
-        tags$h4("Create scripts", class = "addInit-h4"),
-        tags$hr(class = "addInit-hr")
+        tags$hr(class = "addinit-hr"),
+        tags$h4("Create scripts", class = "addinit-h4"),
+        tags$hr(class = "addinit-hr")
       )
     ),
     tags$br(),

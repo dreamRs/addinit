@@ -1,17 +1,19 @@
 Package: addinit
 Type: Package
 Title: Initialize an 'RStudio' Project or a Shiny Application
-Version: 0.2.1
-Authors@R: c(person("Fanny", "Meyer", email = "fanny.meyer@dreamrs.fr", role = c("aut", "cre")),
-  person("Victor", "Perrier", email = "victor.perrier@dreamrs.fr", role = c("aut")))
+Version: 0.2.2
+Authors@R: c(
+    person("Fanny", "Meyer", email = "fanny.meyer<at>dreamrs.fr", role = c("aut", "cre")),
+    person("Victor", "Perrier", role = "aut"),
+    person("dreamRs", role = "cph")
+  )
 Description: A Shiny gadget to initialize your projects with a specified structure, and create implementation scaffolding for a Shiny application.
   You can quickly create folders needed by your analysis (scripts, funs, datas, ...), and scripts based on a template.
   Some options of the gadget are configurale, for example, if default folders names doesn't suit you, yon can change them by setting an option in your Rprofile.
 URL: https://github.com/dreamRs/addinit
 BugReports: https://github.com/dreamRs/addinit/issues
-License: GPL-3 | file LICENSE
+License: MIT + file LICENSE
 Encoding: UTF-8
-LazyData: TRUE
 Imports: miniUI,
     rstudioapi,
     shinyWidgets,
@@ -19,4 +21,4 @@ Imports: miniUI,
     htmltools,
     markdown,
     usethis
-RoxygenNote: 6.1.0
+RoxygenNote: 7.1.1

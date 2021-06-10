@@ -74,5 +74,5 @@ initProjectServer <- function(input, output, session) {
   )
   
   # close app ----
-  observeEvent(input$cancel, stopApp())
+  observeEvent(input$close, stopApp())
 }

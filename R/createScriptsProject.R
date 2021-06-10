@@ -20,9 +20,9 @@ createScriptsProjectUI <- function(id, params, author = NULL) {
     fluidRow(
       column(
         width = 12,
-        tags$hr(class = "addInit-hr"),
-        tags$h4("Create scripts", class = "addInit-h4"),
-        tags$hr(class = "addInit-hr")
+        tags$hr(class = "addinit-hr"),
+        tags$h4("Create scripts", class = "addinit-h4"),
+        tags$hr(class = "addinit-hr")
       )
     ),
     tags$br(),
@@ -32,7 +32,8 @@ createScriptsProjectUI <- function(id, params, author = NULL) {
         pickerInput(
           inputId = ns("path"), label = "Where :", 
           choices = c(". (root)" = ".", list_dirs(recursive = FALSE)), selected = ".",
-          options = list(size = 5)
+          options = list(size = 5),
+          width = "100%"
         )
       ),
       column(
@@ -99,7 +100,7 @@ createScriptsProjectUI <- function(id, params, author = NULL) {
     ),
     actionButton(
       inputId = ns("script_create"),
-      label = "Create script!", 
+      label = "Create script", 
       icon = icon("file-code-o"),
       class = "btn-primary pull-right"
     )
