@@ -24,7 +24,7 @@ devtools::install_github("dreamRs/addinit")
 
 To launch the addin, use the addin menu in RStudio.
 
-![](inst/www/screenshot.png)
+![](man/figures/screenshot.png)
 
 
 
@@ -88,7 +88,7 @@ my_custom_params <- list(
 options("addinit" = my_custom_params)
 ```
 
-![](inst/www/customparams.png)
+![](man/figures/customparams.png)
 
 
    
