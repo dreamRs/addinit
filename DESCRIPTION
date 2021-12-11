@@ -10,7 +10,8 @@ Authors@R: c(
 Description: A Shiny gadget to initialize your projects with a specified structure, and create implementation scaffolding for a Shiny application.
   You can quickly create folders needed by your analysis (scripts, funs, datas, ...), and scripts based on a template.
   Some options of the gadget are configurale, for example, if default folders names doesn't suit you, yon can change them by setting an option in your Rprofile.
-URL: https://github.com/dreamRs/addinit
+URL: https://github.com/dreamRs/addinit,
+    https://dreamrs.github.io/addinit/
 BugReports: https://github.com/dreamRs/addinit/issues
 License: MIT + file LICENSE
 Encoding: UTF-8

@@ -6,3 +6,6 @@ examples/
 ^cran-comments\.md$
 ^LICENSE\.md$
 ^\.github$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

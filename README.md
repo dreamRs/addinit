@@ -1,9 +1,8 @@
 # addinit
 
-> Addin for initializing new projects
+> Addin for initializing new projects in RStudio
 
 <!-- badges: start -->
-[![Travis-CI Build Status](https://travis-ci.org/dreamRs/addinit.svg?branch=master)](https://travis-ci.org/dreamRs/addinit)
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![R-CMD-check](https://github.com/dreamRs/addinit/workflows/R-CMD-check/badge.svg)](https://github.com/dreamRs/addinit/actions)
 <!-- badges: end -->
