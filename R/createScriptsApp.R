@@ -7,7 +7,7 @@
 #' @param author Who should be credited as the author of the scripts ?
 #'
 #' @noRd
-#' @importFrom shinyWidgets awesomeCheckbox awesomeRadio pickerInput
+#' @importFrom shinyWidgets awesomeCheckbox awesomeRadio pickerInput textInputIcon
 #' @importFrom htmltools tags tagList
 #' @importFrom shiny NS fluidRow column conditionalPanel actionButton
 #' @importFrom phosphoricons ph
@@ -59,23 +59,22 @@ createScriptsAppUI <- function(id, params, author = NULL) {
           inputId = ns("path_shiny"), label = "Where :", 
           choices = c(". (root)" = ".", list_dirs(recursive = FALSE)),
           selected = ".",
-          options = list(size = 5)
+          options = list(size = 5),
+          width = "100%"
         )
       ),
       column(
         width = 6,
         tags$div(
-          class="form-group",
-          style="float:right; width: 100%;margin-bottom:3px",
-          tags$label("Script's name :"),
-          tags$div(
-            class="input-group",
-            tags$input(
-              class = "form-control shiny-bound-input",
-              type = "text", id = ns("script_name_shiny"), value = "",
-              placeholder = "Valid name"
-            ),
-            tags$span(class="input-group-addon", ".R")
+          class = "form-group",
+          style = "float:right; width: 100%;margin-bottom:3px",
+          textInputIcon(
+            inputId = ns("script_name_shiny"), 
+            label = "Script's name :",
+            value = "",
+            placeholder = "00_init_project", 
+            icon = list(NULL, ".R"),
+            width = "100%"
           )
         )
       )
@@ -84,27 +83,30 @@ createScriptsAppUI <- function(id, params, author = NULL) {
       column(
         width = 3,
         tags$div(
-          class="form-group",
-          style="float:right; width: 100%;margin-bottom:3px; ",
-          tags$label("By :"),
-          tags$input(
-            class = "form-control shiny-bound-input",
-            type = "text", id = ns("author_shiny"), 
+          class = "form-group",
+          style = "float:right; width: 100%;margin-bottom:3px; ",
+          textInputIcon(
+            inputId = ns("author_shiny"), 
+            label = "Author:",
             value = author,
-            placeholder = "Fanny Meyer"
+            placeholder = "Fanny", 
+            icon = ph("user"),
+            width = "100%"
           )
         )
       ),
       column(
         width = 3,
         tags$div(
-          class="form-group",
-          style="float:right; width: 100%; margin-bottom:3px; ",
-          tags$label("Title :"),
-          tags$input(
-            class = "form-control shiny-bound-input",
-            type = "text", id = ns("script_title_shiny"), value = "",
-            placeholder = "Title"
+          class = "form-group",
+          style = "float:right; width: 100%; margin-bottom:3px; ",
+          textInputIcon(
+            inputId = ns("script_title_shiny"), 
+            label = "Title:",
+            value = "",
+            placeholder = "My awesome app", 
+            icon = ph("text-t"),
+            width = "100%"
           )
         )
       ),
@@ -114,11 +116,15 @@ createScriptsAppUI <- function(id, params, author = NULL) {
           inputId = ns("packages_shiny"), 
           label = "Packages to load :",
           choices = params$packages$default, multiple = TRUE, 
-          options = list(`live-search` = TRUE, size = 10, 
-                         `selected-text-format` = "count > 3", 
-                         `count-selected-text` = "{0} packages", 
-                         `dropup-auto` = TRUE),
-          selected = params$packages$selected
+          options = list(
+            `live-search` = TRUE,
+            size = 10, 
+            `selected-text-format` = "count > 3", 
+            `count-selected-text` = "{0} packages", 
+            `dropup-auto` = TRUE
+          ),
+          selected = params$packages$selected,
+          width = "100%"
         )
       )
     ),

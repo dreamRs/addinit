@@ -7,7 +7,7 @@
 #' @param author Who should be credited as the author of the scripts ?
 #'
 #' @noRd
-#' @importFrom shinyWidgets pickerInput awesomeCheckbox materialSwitch
+#' @importFrom shinyWidgets pickerInput awesomeCheckbox materialSwitch textInputIcon
 #' @importFrom htmltools tags tagList
 #' @importFrom shiny NS fluidRow column conditionalPanel actionButton
 #' @importFrom phosphoricons ph
@@ -17,14 +17,9 @@ createScriptsProjectUI <- function(id, params, author = NULL) {
   ns <- NS(id)
   
   tagList(
-    fluidRow(
-      column(
-        width = 12,
-        tags$hr(class = "addinit-hr"),
-        tags$h4("Create scripts", class = "addinit-h4"),
-        tags$hr(class = "addinit-hr")
-      )
-    ),
+    tags$hr(class = "addinit-hr"),
+    tags$h4("Create scripts", class = "addinit-h4"),
+    tags$hr(class = "addinit-hr"),
     tags$br(),
     fluidRow(
       column(
@@ -42,17 +37,13 @@ createScriptsProjectUI <- function(id, params, author = NULL) {
         tags$div(
           class = "form-group",
           style = "float:right; width: 100%;margin-bottom:3px",
-          tags$label("Script's name :"),
-          tags$div(
-            class="input-group",
-            tags$input(
-              class = "form-control shiny-bound-input",
-              type = "text", 
-              id = ns("script_name"), 
-              value = "",
-              placeholder = "Valid name"
-            ),
-            tags$span(class = "input-group-addon", ".R")
+          textInputIcon(
+            inputId = ns("script_name"), 
+            label = "Script's name :",
+            value = "",
+            placeholder = "00_init_project", 
+            icon = list(NULL, ".R"),
+            width = "100%"
           )
         )
       )
@@ -63,28 +54,28 @@ createScriptsProjectUI <- function(id, params, author = NULL) {
         tags$div(
           class = "form-group",
           style = "float:right; width: 100%;margin-bottom:3px; ",
-          tags$label("By :"),
-          tags$input(
-            class = "form-control shiny-bound-input",
-            type = "text",
-            id = ns("author"),
+          textInputIcon(
+            inputId = ns("author"), 
+            label = "Author:",
             value = author,
-            placeholder = "Fanny Meyer"
+            placeholder = "Fanny", 
+            icon = ph("user"),
+            width = "100%"
           )
         )
       ),
       column(
         width = 3,
         tags$div(
-          class="form-group",
-          style="float:right; width: 100%; margin-bottom:3px; ",
-          tags$label("Title :"),
-          tags$input(
-            class = "form-control shiny-bound-input",
-            type = "text", 
-            id = ns("script_title"),
+          class = "form-group",
+          style = "float:right; width: 100%; margin-bottom:3px; ",
+          textInputIcon(
+            inputId = ns("script_title"), 
+            label = "Title:",
             value = "",
-            placeholder = "Title"
+            placeholder = "My awesome analysis", 
+            icon = ph("text-t"),
+            width = "100%"
           )
         )
       ),
