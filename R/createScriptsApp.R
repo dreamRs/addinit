@@ -9,8 +9,8 @@
 #' @noRd
 #' @importFrom shinyWidgets awesomeCheckbox awesomeRadio pickerInput
 #' @importFrom htmltools tags tagList
-#' @importFrom shiny NS fluidRow column conditionalPanel actionButton icon
-#' 
+#' @importFrom shiny NS fluidRow column conditionalPanel actionButton
+#' @importFrom phosphoricons ph
 createScriptsAppUI <- function(id, params, author = NULL) {
   
   # Namespace
@@ -130,8 +130,7 @@ createScriptsAppUI <- function(id, params, author = NULL) {
           style = "float:right",
           actionButton(
             inputId = ns("script_create_shiny"), 
-            label = "Add script",
-            icon = icon("file-code-o"), 
+            label = tagList(ph("code"), "Add script"),
             class = "btn-primary"
           )
         )

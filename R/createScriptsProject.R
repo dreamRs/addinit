@@ -9,8 +9,8 @@
 #' @noRd
 #' @importFrom shinyWidgets pickerInput awesomeCheckbox materialSwitch
 #' @importFrom htmltools tags tagList
-#' @importFrom shiny NS fluidRow column conditionalPanel actionButton icon
-# @import shiny
+#' @importFrom shiny NS fluidRow column conditionalPanel actionButton
+#' @importFrom phosphoricons ph
 createScriptsProjectUI <- function(id, params, author = NULL) {
   
   # Namespace
@@ -31,7 +31,8 @@ createScriptsProjectUI <- function(id, params, author = NULL) {
         width = 6,
         pickerInput(
           inputId = ns("path"), label = "Where :", 
-          choices = c(". (root)" = ".", list_dirs(recursive = FALSE)), selected = ".",
+          choices = c(". (root)" = ".", list_dirs(recursive = FALSE)),
+          selected = ".",
           options = list(size = 5),
           width = "100%"
         )
@@ -39,17 +40,19 @@ createScriptsProjectUI <- function(id, params, author = NULL) {
       column(
         width = 6,
         tags$div(
-          class="form-group",
-          style="float:right; width: 100%;margin-bottom:3px",
+          class = "form-group",
+          style = "float:right; width: 100%;margin-bottom:3px",
           tags$label("Script's name :"),
           tags$div(
             class="input-group",
             tags$input(
               class = "form-control shiny-bound-input",
-              type = "text", id = ns("script_name"), value = "",
+              type = "text", 
+              id = ns("script_name"), 
+              value = "",
               placeholder = "Valid name"
             ),
-            tags$span(class="input-group-addon", ".R")
+            tags$span(class = "input-group-addon", ".R")
           )
         )
       )
@@ -58,12 +61,13 @@ createScriptsProjectUI <- function(id, params, author = NULL) {
       column(
         width = 3,
         tags$div(
-          class="form-group",
-          style="float:right; width: 100%;margin-bottom:3px; ",
+          class = "form-group",
+          style = "float:right; width: 100%;margin-bottom:3px; ",
           tags$label("By :"),
           tags$input(
             class = "form-control shiny-bound-input",
-            type = "text", id = ns("author"),
+            type = "text",
+            id = ns("author"),
             value = author,
             placeholder = "Fanny Meyer"
           )
@@ -77,7 +81,9 @@ createScriptsProjectUI <- function(id, params, author = NULL) {
           tags$label("Title :"),
           tags$input(
             class = "form-control shiny-bound-input",
-            type = "text", id = ns("script_title"), value = "",
+            type = "text", 
+            id = ns("script_title"),
+            value = "",
             placeholder = "Title"
           )
         )
@@ -88,20 +94,22 @@ createScriptsProjectUI <- function(id, params, author = NULL) {
           inputId = ns("packages"), 
           label = "Packages to load :",
           choices = params$packages$default,
-          multiple = TRUE, width = "100%",
-          options = list(`live-search` = TRUE, 
-                         size = 10, 
-                         `selected-text-format` = "count > 3", 
-                         `count-selected-text` = "{0} packages", 
-                         `dropup-auto` = TRUE),
+          multiple = TRUE,
+          width = "100%",
+          options = list(
+            `live-search` = TRUE, 
+            size = 10, 
+            `selected-text-format` = "count > 3", 
+            `count-selected-text` = "{0} packages", 
+            `dropup-auto` = TRUE
+          ),
           selected = params$packages$selected
         )
       )
     ),
     actionButton(
       inputId = ns("script_create"),
-      label = "Create script", 
-      icon = icon("file-code-o"),
+      label = tagList(ph("code"), "Create script"), 
       class = "btn-primary pull-right"
     )
   )

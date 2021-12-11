@@ -3,7 +3,8 @@
 #' @return a taglist
 #' @noRd
 #' @importFrom htmltools includeMarkdown tags tagList
-#' @importFrom shiny tabsetPanel tabPanel icon HTML
+#' @importFrom shiny tabsetPanel tabPanel HTML
+#' @importFrom phosphoricons ph
 helpAddinit <- function() {
   
   tagList(
@@ -26,8 +27,8 @@ helpAddinit <- function() {
         tags$br(),
         tags$br(),
         tags$p(
-          "More information on :",
-          tags$a(icon("github"), href = "https://github.com/dreamRs/addinit")
+          "More information can be found on GitHub :",
+          tags$a(ph("github-logo"), href = "https://github.com/dreamRs/addinit")
         ),
         tags$p(
           "If you have questions, you can ask them here :",
@@ -36,16 +37,7 @@ helpAddinit <- function() {
             href = "https://github.com/dreamRs/addinit/issues"
           )
         ),
-        tags$br(),
-        tags$br(),
-        tags$p(
-          "Keep Calm and use", tags$b("addinit") , "!",
-          tags$a(
-            tags$a(icon("paw"),
-            href = "https://fr.pinterest.com/pin/274156696044567832/"
-          )
-        )
-      )
+        tags$br()
       ),
       
       tabPanel(
@@ -57,8 +49,10 @@ helpAddinit <- function() {
           "For this just modify the parameters list below and",
           "set the option addinit in your .Rprofile."
         ),
-        tags$div(style = "max-height: 300px;overflow-y: scroll;",
-        includeMarkdown(path = system.file('www/params.md', package='addinit')))
+        tags$div(
+          style = "max-height: 300px; overflow-y: scroll;",
+          includeMarkdown(path = system.file("www/params.md", package='addinit'))
+        )
       )
       
     ),

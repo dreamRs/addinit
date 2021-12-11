@@ -3,26 +3,25 @@
 #' @noRd
 #' 
 #' @importFrom miniUI miniPage miniTabstripPanel miniTabPanel miniContentPanel
-#' @importFrom shiny icon actionButton
+#' @importFrom shiny actionButton
 #' @importFrom htmltools tags
-#'
+#' @importFrom phosphoricons ph ph_i html_dependency_phosphor
 initProjectUI <- function(params) {
   
   miniPage(
     # CSS
     tags$link(rel="stylesheet", type="text/css", href="addinit/addinit.css"),
+    html_dependency_phosphor(),
     
     # header
     tags$div(
       class = "gadget-title addinit-title-container",
-      tags$div(icon("lightbulb-o"), "Initiate a project", class = "addinit-title"),
+      tags$div(ph("lightbulb"), "Initiate a project", class = "addinit-title"),
       tags$div(
         class = "pull-left",
         actionButton(
           inputId = "help",
-          label = NULL,
-          icon = icon("question", class = "fa-lg"),
-          class = "btn-sm",
+          label = ph("question"),
           title = "Help"
         )
       ),
@@ -30,9 +29,7 @@ initProjectUI <- function(params) {
         class = "pull-right",
         actionButton(
           inputId = "close",
-          label = NULL,
-          icon = icon("times", class = "fa-lg"),
-          class = "btn-sm",
+          label = ph("x", title = "Close Window"),
           title = "Close Window"
         )
       )
@@ -48,7 +45,7 @@ initProjectUI <- function(params) {
       miniTabPanel(
         title = "Organize your project",
         value = "project",
-        icon = icon("folder"),
+        icon = ph_i("folder"),
         miniContentPanel(
           
           createFoldersUi(id = "project", params = params$project, title = "Create folders")
@@ -65,9 +62,8 @@ initProjectUI <- function(params) {
         miniUI::miniButtonBlock(
           actionButton(
             inputId = "add_readme", 
-            label = "Add README", 
-            class = "btn-primary", 
-            icon = icon("file-text")
+            label = tagList(ph("file"), "Add README"), 
+            class = "btn-primary"
           )
         )
       ),
@@ -76,7 +72,7 @@ initProjectUI <- function(params) {
       miniTabPanel(
         title = "Organize your Shiny app",
         value = "application",
-        icon = icon("cubes"),
+        icon = ph_i("app-window"),
         miniContentPanel(
           
           createFoldersUi(id = "application", params = params$application, title = "Create folders")

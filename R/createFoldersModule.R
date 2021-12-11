@@ -36,10 +36,10 @@
 #' @return a \code{shiny::\link[shiny]{tagList}} containing UI elements
 #' @noRd
 #' 
-#' @importFrom shiny NS tagList fluidRow column tags textInput actionButton icon
+#' @importFrom shiny NS tagList fluidRow column tags textInput actionButton
 #' @importFrom shinyWidgets checkboxGroupButtons
 #' @importFrom htmltools tags
-#'
+#' @importFrom phosphoricons ph
 createFoldersUi <- function(id, params, title = "Create folders") {
   
   # Namespace
@@ -65,8 +65,10 @@ createFoldersUi <- function(id, params, title = "Create folders") {
           selected = params$folders$selected,
           justified = TRUE, 
           status = "info",
-          checkIcon = list(yes = tags$i(class = "fa fa-check-square"), 
-                           no = tags$i(class = "fa fa-square-o"))
+          checkIcon = list(
+            yes = ph("check-square"), 
+            no = ph("square")
+          )
         )
       ),
       column(
@@ -87,8 +89,7 @@ createFoldersUi <- function(id, params, title = "Create folders") {
           tags$br(),
           actionButton(
             inputId = ns("folders_create"), 
-            label = "Create folders", 
-            icon = icon("folder-o"), 
+            label = tagList(ph("folder"), "Create folders"), 
             class = "btn-primary"
           )
         )
